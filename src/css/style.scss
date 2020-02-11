@@ -1,0 +1,45 @@
+/**
+
+  ------------------- 注意!!! ---------------------
+  公共类请在common.scss文件中定义，请勿在此文件添加任何公共类！！！
+
+**/
+
+// 修改部分标签默认类
+@import './base/reset.scss';
+// 设置公共的颜色与字体大小变量
+@import './base/baseVariables.scss';
+// 设置常用的公共类
+@import './common.scss';
+// 设置文本（大小，粗体，对齐方式，颜色）和背景颜色公共类
+@import './base/fontAndBg.scss';
+// 设置常用padding所用值公共类
+@import './base/padding.scss';
+// 设置常用margin所用值公共类
+@import './base/margin.scss';
+
+// -------------------公共类类名说明---------------------------
+
+/* 
+  基础变量（基础颜色变量、文本和背景颜色变量、字体大小变量）
+  $blue  $green  $red  $orange  $black  $white
+  $titleColor  $textColor  $tipsColor  $borderColor  $dividerColor  $bgColor
+  $smallerFont  $smallFont  $normalFont  $largeFont  $largerFont
+*/
+
+/*
+  公共类（文本、指定几行显示、清除浮动、border边框）
+  we-title  we-text  we-tips  (we-line-1 至 we-line-6)  we-clear-float
+  we-border-0  we-border-[null | top | bottom | left | right]-1
+
+  文本（大小、粗体与对齐方式、颜色）、背景颜色
+  (we-font-10 至 we-font-20)  
+  we-font-normal  we-font-bold  we-font-bolder  we-font-left  we-font-center  we-font-right
+  we-color-blue  we-color-green  we-color-red  we-color-orange  we-color-black  we-color-white
+  we-color-title  we-color-text  we-color-tips
+  we-bg  we-bg-blue  we-bg-green  we-bg-red  we-bg-orange  we-bg-black  we-bg-white
+
+  padding和margin（xx为0 2 5 10 15 20）
+  we-padding-[null | top | bottom | left | right]-xx
+  we-margin-[null | top | bottom | left | right]-xx
+*/

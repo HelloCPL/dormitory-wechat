@@ -1,0 +1,26 @@
+.container {
+  background: #fff;
+  padding-top: 10px;
+
+  .content {
+    word-break: break-all;
+    transition: all 5s;
+  }
+
+  .img-wrapper {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $normalFont;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      color: $blue;
+    }
+  }
+}

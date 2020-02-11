@@ -1,0 +1,93 @@
+// 字体大小样式
+.we-font-10 {
+    font-size: 10px;
+}
+.we-font-12 {
+    font-size: 12px;
+}
+.we-font-14 {
+    font-size: 14px;
+}
+.we-font-16 {
+    font-size: 16px;
+}
+.we-font-18 {
+    font-size: 18px;
+}
+.we-font-20 {
+    font-size: 20px;
+}
+
+// 字体粗体样式
+.we-font-normal {
+    font-weight: normal;
+}
+.we-font-bold {
+    font-weight: bold;
+}
+.we-font-bolder {
+    font-weight: bolder;
+}
+
+// 字体对齐方式样式
+.we-font-left {
+    text-align: left;
+}
+.we-font-center {
+    text-align: center;
+}
+.we-font-right {
+    text-align: right;
+}
+
+// 字体颜色样式
+.we-color-blue {
+    color: $blue;
+}
+.we-color-green {
+    color: $green;
+}
+.we-color-red {
+    color: $red;
+}
+.we-color-orange {
+    color: $orange;
+}
+.we-color-black {
+    color: $black;
+}
+.we-color-white {
+    color: $white;
+}
+.we-color-title {
+    color: $titleColor;
+}
+.we-color-text {
+    color: $textColor;
+}
+.we-color-tips {
+    color: $tipsColor;
+}
+
+// 背景颜色样式
+.we-bg {
+    background: $bgColor;
+}
+.we-bg-blue {
+    background: $blue;
+}
+.we-bg-green {
+    background: $green;
+}
+.we-bg-red {
+    background: $red;
+}
+.we-bg-orange {
+    background: $orange;
+}
+.we-bg-black {
+    background: $black;
+}
+.we-bg-white {
+    background: $white;
+}
