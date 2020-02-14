@@ -4,17 +4,17 @@
     <van-notice-bar mode="closeable" :left-icon="notifyImg1" :text="notifyWord" />
 
     <!-- 头部 -->
-    <div class="we-bg-white we-padding-10 header">
+    <div class="we-bg-white we-padding header">
       <div class="we-margin-bottom-20 header-footer">
         <div class="notify" v-if="!notificationList.length">
           <img :src="notifyNoneImg">
-          <span class="we-tips we-margin-right-2">我的消息</span>
+          <span class="we-color-tips we-margin-right-2">我的消息</span>
           <van-tag type="danger" round>未读5</van-tag>
           <!-- <van-tag type="danger" round>1</van-tag> -->
         </div>
         <div class="notify" v-else>
           <img :src="notifyImg">
-          <span class="we-tips we-margin-right-2">我的消息</span>
+          <span class="we-color-tips we-margin-right-2">我的消息</span>
         </div>
 
         <div class="notify">
@@ -27,7 +27,7 @@
         <img :src="userInfoGetter.avatarUrl" class="header-img" v-if="tokenGetter && userInfoGetter.avatarUrl">
         <!-- <span class="we-tips we-margin-top-15" v-if="!tokenGetter">点击登录</span> -->
         <button open-type="getUserInfo" @getuserinfo="toLogin" v-if="!tokenGetter">点击登录</button>
-        <span class="we-tips we-margin-top-15" v-else>{{userInfoGetter.nickName}}</span>
+        <span class="we-color-tips we-margin-top-15" v-else>{{userInfoGetter.nickName}}</span>
       </div>
     </div>
 
@@ -60,12 +60,12 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      unLoginImg: require('@img/icon_user_unlogin.png'),
-      loginImg: require('@img/icon_user_login.png'),
-      notifyNoneImg: require('@img/icon_notify.png'),
-      notifyImg: require('@img/icon_notify_red.png'),
-      notifyImg1: require('@img/icon_notify1.png'),
-      settingImg: require('@img/icon_setting.png'),
+      unLoginImg: require('@icon/icon_user_unlogin.png'),
+      loginImg: require('@icon/icon_user_login.png'),
+      notifyNoneImg: require('@icon/icon_notify.png'),
+      notifyImg: require('@icon/icon_notify_red.png'),
+      notifyImg1: require('@icon/icon_notify1.png'),
+      settingImg: require('@icon/icon_setting.png'),
       userImg: '',
 
       notificationList: [], //消息
@@ -78,7 +78,6 @@ export default {
       'initUserInfoAction'
     ]),
     toLogin(e) {
-      console.log(123)
       e = e.mp.detail.userInfo
       if (!e) return
       let userInfo = {
@@ -88,7 +87,6 @@ export default {
         city: e.city,
         nickName: e.nickName,
       }
-      console.log(userInfo)
       this.wxLogin()
         .then(res => {
           return this.$http.postPub('/register', {
@@ -97,7 +95,7 @@ export default {
           })
         })
         .catch(() => {
-          console.log('发生错误')
+          this.$toast('发生错误')
         })
         .then(res => {
           if (res.errorCode === 0) {
@@ -106,9 +104,6 @@ export default {
             this.initUserInfoAction(userInfo)
             this.wxSetStorage('token', token)
             this.wxSetStorage('userInfo', userInfo)
-            let a = this.wxGetStorage('token')
-            let b = this.wxGetStorage('userInfo')
-            console.log(a, b)
           }
         })
     }

@@ -3,10 +3,14 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_BASE_URL: '"http://localhost:3000/wechat"',
+  API_BASE_URL: '"http://localhost:3000/api/wechat"',
   wx: {
-    appId: 'wx15b4165798ef239f',
-    appSecret: 'e6f25f907790b77055c731eae3fdc36e',
+    appId: '"wx15b4165798ef239f"',
+    appSecret: '"e6f25f907790b77055c731eae3fdc36e"',
+  },
+  gaode: {
+    keyName: '"dormitory"',
+    keyValue: '"0d6a46e2b7398865626531ef6d174bb2"'
   }
 })
 

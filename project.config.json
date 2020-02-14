@@ -24,7 +24,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx15b4165798ef239f",
-	"projectname": "%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0",
+	"projectname": "dormitory-wechat",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

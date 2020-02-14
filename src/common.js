@@ -37,7 +37,6 @@ export default {
           return wxCreateSelectorQuery(id)
         },
 
-
         wxLogin,
         wxGetUserInfo,
         wxGetStorage,

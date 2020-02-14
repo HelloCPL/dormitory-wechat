@@ -56,8 +56,8 @@ export default {
     },
     data() {
         return {
-            srcDown: require('@img/icon_down1_blue.png'),
-            srcUp: require('@img/icon_up1_blue.png'),
+            srcDown: require('@icon/icon_down1_blue.png'),
+            srcUp: require('@icon/icon_up1_blue.png'),
             show: true, //是否展开
             showBtn: true, //是否显示展开与收起按钮
             count: 1,

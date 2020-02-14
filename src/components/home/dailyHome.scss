@@ -1,0 +1,18 @@
+.daily-home-container {
+  width: 100%;
+
+  .daily-header {
+    display: flex;
+    justify-content: space-between;
+
+    .daily-more {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

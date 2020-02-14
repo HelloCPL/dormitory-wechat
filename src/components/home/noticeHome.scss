@@ -1,0 +1,36 @@
+.notice-home-container {
+  width: 100%;
+
+  .notice-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .notice-title {
+      white-space: nowrap;
+      border-radius: 2px;
+      padding: 2px 4px;
+      margin-right: 2px;
+    }
+
+    .notice-content {
+      flex: 1;
+      // height: 20px;
+      // overflow: hidden;
+    }
+
+    .notice-more {
+      display: flex;
+      align-items: center;
+
+      span {
+        white-space: nowrap;
+      }
+
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

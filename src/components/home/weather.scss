@@ -1,0 +1,14 @@
+.weather-container {
+  width: 100%;
+
+  .weather-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    word-spacing: 1px;
+
+    .weather-temp {
+      font-size: 32px;
+    }
+  }
+}

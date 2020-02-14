@@ -6,7 +6,10 @@
     "van-button": "/static/vant/button/index",
     "van-cell-group": "/static/vant/cell-group/index",
     "van-cell": "/static/vant/cell/index",
+    "van-grid": "/static/vant/grid/index",
+    "van-grid-item": "/static/vant/grid-item/index",
     "van-tag": "/static/vant/tag/index",
+    "van-image": "/static/vant/image/index",
     "van-notice-bar": "/static/vant/notice-bar/index"
   },
   "window": {
@@ -14,5 +17,10 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "Warming",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取天气信息"
+    }
   }
 }

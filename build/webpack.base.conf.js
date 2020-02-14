@@ -47,6 +47,7 @@ let baseWebpackConfig = {
         alias: {
             'vue': 'mpvue',
             '@': resolve('src'),
+            '@icon': resolve('static/icons'),
             '@img': resolve('static/images'),
             '@css': resolve('src/css'),
             '@com': resolve('src/components'),

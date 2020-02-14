@@ -1,0 +1,72 @@
+.records-container {
+  width: 100%;
+
+  // 头部
+  .records-header {
+    width: auto;
+    overflow-x: auto;
+
+    .records-wrapper {
+      height: 100%;
+      margin-right: 10px;
+      background: $cardColor;
+      border-radius: 5px;
+
+      .records-wrapper-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .records-name {
+          flex: 1;
+        }
+
+        .records-like {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 14px;
+            height: 14px
+          }
+        }
+      }
+
+      .records-info {
+        line-height: 18px;
+      }
+    }
+
+  }
+
+  // 内容
+  .records-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 14px;
+        height: 14px;
+        margin-right: 4px;
+      }
+    }
+
+    .side {
+      display: flex;
+      align-items: center;
+
+      .add {
+        border-right: 1px solid $tipsColor;
+      }
+
+      p {
+        color: $blue;
+      }
+    }
+  }
+}

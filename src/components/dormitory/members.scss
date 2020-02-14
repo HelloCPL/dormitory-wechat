@@ -1,0 +1,48 @@
+.members-container {
+  width: 100%;
+
+  // 宿舍成员
+  .members-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+
+    .members-img {
+      width: 26px;
+      height: 26px;
+    }
+
+    .members-more {
+      width: 26px;
+      height: 26px;
+      border-radius: 50px;
+      border: 1px solid $borderColor;
+      line-height: 26px;
+      text-align: center;
+    }
+  }
+
+  // 宿舍值日表
+  .members-schedule {
+    display: flex;
+    justify-content: flex-end;
+
+    .members-time {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      img {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .members-name {
+      max-width: 80px;
+      box-sizing: border-box;
+    }
+  }
+
+}

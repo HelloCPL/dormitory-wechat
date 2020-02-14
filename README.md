@@ -2,7 +2,7 @@
 #### 配置别名 
 - 配置：直接在 `build/webpack.base.conf.js` 中配置
 
-- 别名有：`@  @img  @css  @com  @pages  @js  @api  @store`
+- 别名有：`@  @icon @img  @css  @com  @pages  @js  @api  @store`
 
 #### 使用vuex
 - 配置：
