@@ -29,6 +29,7 @@ export default {
     }
 
     this.initTokenAndUserInfo()
+
   },
   methods: {
     ...mapActions([
@@ -41,8 +42,10 @@ export default {
       let userInfo = this.wxGetStorage('userInfo')
       if (token)
         this.initTokenAction(token)
-      if (userInfo && this.$tools.isObject(userInfo))
+      if (userInfo && this.$tools.isObject(userInfo)) {
         this.initUserInfoAction(userInfo)
+        console.log('用户信息', userInfo)
+      }
     }
   }
 

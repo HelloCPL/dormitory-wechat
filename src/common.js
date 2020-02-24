@@ -4,16 +4,15 @@ import {
   mapActions
 } from 'vuex'
 import {
-  wxCreateSelectorQuery
-} from '@/wx/index'
-import {
   wxLogin,
   wxGetUserInfo,
   wxGetStorage,
   wxSetStorage,
   wxRemoveStorage,
-  wxClearStorage
-} from '@/wx/using'
+  wxClearStorage,
+  wxCreateSelectorQuery
+} from '@/wx/index'
+
 export default {
   install: function (Vue, params) {
     params = params || {}
@@ -29,8 +28,7 @@ export default {
       // 命名使用大驼峰法
       methods: {
         // 全局调用vuex公共方法
-        ...mapActions([
-        ]),
+        ...mapActions([]),
 
         // 获取元素宽高位置等信息 id如 '#myId'
         GetElement(id) {

@@ -4,5 +4,6 @@
     "van-tabbar": "/static/vant/tabbar/index",
     "van-tabbar-item": "/static/vant/tabbar-item/index",
     "van-button": "/static/vant/button/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

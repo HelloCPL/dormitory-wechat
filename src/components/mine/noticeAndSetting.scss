@@ -1,0 +1,25 @@
+.notice-container {
+  width: 100%;
+
+  .header-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .notify {
+      display: flex;
+      align-items: center;
+      padding: 2px 4px;
+
+      .icon-notice {
+        width: 16px;
+        height: 16px;
+      }
+
+      .icon-setting {
+         width: 18px;
+         height: 18px;
+      }
+    }
+  }
+}

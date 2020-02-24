@@ -47,7 +47,6 @@ export default {
         success: function (data) {
           self.isWeather = true
           //成功回调
-          console.log(data)
           if (data && !self.$tools.isEmptyObject(data)) {
             self.weatherData = data
           }

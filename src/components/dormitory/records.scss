@@ -26,13 +26,14 @@
           align-items: center;
 
           img {
-            width: 14px;
-            height: 14px
+            width: 16px;
+            height: 16px
           }
         }
       }
 
-      .records-info {
+      .records-info,
+      .records-info p {
         line-height: 18px;
       }
     }
@@ -40,33 +41,16 @@
   }
 
   // 内容
-  .records-content {
+  .side {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    .title {
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 14px;
-        height: 14px;
-        margin-right: 4px;
-      }
+    .add {
+      border-right: 1px solid $tipsColor;
     }
 
-    .side {
-      display: flex;
-      align-items: center;
-
-      .add {
-        border-right: 1px solid $tipsColor;
-      }
-
-      p {
-        color: $blue;
-      }
+    p {
+      color: $blue;
     }
   }
 }

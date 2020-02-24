@@ -9,23 +9,26 @@ import {
 
 // 提示
 export const toast = (params) => {
+  console.log(123, params)
   let obj = {
-    title: '操作成功',
     icon: 'none',
     image: '',
     duration: 2000,
     mask: false
   }
   if (tools.isObject(params)) {
-    obj.title = params.title || obj.title
+    obj.title = params.title
     obj.icon = params.icon || obj.icon
     obj.image = params.image || obj.image
     obj.duration = params.duration || obj.duration
     obj.mask = tools.isBoolean(params.mask) ? params.mask : obj.mask
   } else if (tools.isString(params) || tools.isNumber(params)) {
-    obj.title = params || obj.title
+    obj.title = params
+  } else if (tools.isArray(params)) {
+    obj.title = params[0]
   }
-  wxShowToast(obj)
+  if (obj.title)
+    wxShowToast(obj)
 }
 
 // 加载效果
@@ -51,7 +54,7 @@ export const hideLoading = () => {
 // 确认取消
 export const confirm = (params) => {
   let obj = {
-    title: '',
+    title: '温馨提示',
     content: '',
     showCancel: true,
     cancelText: '取消',
@@ -76,7 +79,7 @@ export const confirm = (params) => {
 // 确定框
 export const alert = (params) => {
   let obj = {
-    title: '',
+    title: '温馨提示',
     content: '',
     showCancel: false,
     confirmText: '确定',

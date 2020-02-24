@@ -1,0 +1,72 @@
+.records-list-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+
+  // 时光列表
+  .records-wrapper {
+    width: 100%;
+    position: relative;
+
+    .box-left {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+
+    .box-right {
+      margin-left: 31px;
+
+      .content {
+        line-height: 18px;
+      }
+    }
+
+    .box-img {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .box-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .right {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    .box-comment {
+      width: 100%;
+      border-radius: 4px;
+      background: $cardColor;
+      line-height: 16px;
+      padding: 8px 10px 10px 10px;
+      box-sizing: border-box;
+    }
+  }
+
+  // 评论框
+  .comment-wrapper {
+    background: $cardColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+
+    .left {
+      flex: 1;
+    }
+  }
+}

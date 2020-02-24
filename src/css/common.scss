@@ -110,30 +110,6 @@ body {
   border-right: 1px solid $borderColor;
 }
 
-.we-width-100pc {
-  width: 100%;
-}
-
-.we-width-90pc {
-  width: 90%;
-}
-
-.we-width-100vw {
-  width: 100vw;
-}
-
-.we-height-100pc {
-  height: 100%;
-}
-
-// 分隔区
-.we-divider {
-  display: block;
-  width: 100%;
-  height: 10px;
-  background: $bgColor;
-}
-
 // 间距
 .we-padding {
   padding-left: 15px;
@@ -141,4 +117,13 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   box-sizing: border-box;
+}
+
+// 底部固定定位盒子
+.we-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
 }

@@ -11,4 +11,18 @@
       left: 0;
     }
   }
+
+  .home-add {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .order-wrapper {
+    min-height: 80vh;
+  }
 }

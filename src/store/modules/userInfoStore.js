@@ -8,15 +8,17 @@ const state = {
     // nickName: "陳一枝",
     // province: "",
   },
-
-  // 后期对token进行真实请求 ---------------
-  token: '',
+  token: '', // 作为是否登录标记
+  token1: true, // 作为是否登录标记
+  authentication: true, // 是否已实名认证
 }
 
 const getters = {
   // 导出 用户信息
   userInfoGetter: state => state.userInfo,
   tokenGetter: state => state.token,
+  tokenGetter1: state => state.token1,
+  authenticationGetter: state => state.authentication,
 }
 
 const actions = {

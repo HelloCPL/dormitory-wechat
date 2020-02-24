@@ -1,5 +1,5 @@
 <template>
-  <div class="we-bg-white functional-container">
+  <div class="we-bg-white we-margin-top-10 functional-container">
     <van-grid :column-num="column">
       <template v-for="(item, index) in functionalList">
         <van-grid-item :icon="item.img" :text="item.text" :key="index" @click="toDetail(item.url)" />

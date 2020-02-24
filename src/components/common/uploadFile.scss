@@ -1,0 +1,46 @@
+.upload-container {
+  width: 100%;
+
+  .upload-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 2px;
+  }
+
+  .upload-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    .upload-list {
+      position: relative;
+      width: 80px;
+      height: 80px;
+
+      .upload-delete {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 16px;
+        height: 16px;
+        z-index: 2;
+        background: #fff;
+        border-radius: 50%;
+      }
+    }
+
+    .upload-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px dashed $borderColor;
+
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}

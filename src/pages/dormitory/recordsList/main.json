@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "时光列表",
+  "usingComponents": {
+    "van-popup": "/static/vant/popup/index"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "标题",
   "usingComponents": {
-    "van-button": "/static/vant/button/index"
-}
+    
+  }
 }

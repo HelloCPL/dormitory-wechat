@@ -1,12 +1,12 @@
 <template>
   <div class="we-bg-white members-container" v-if="membersList.length">
     <!-- 宿舍成员 -->
-    <van-cell title="我的宿舍成员" is-link>
+    <van-cell title="北二666" is-link @click="toMembersList">
       <!-- 头像 -->
       <div class="members-wrapper">
         <template v-for="(item, index) in membersList">
           <div :key="index" class="we-margin-right-2 members-img" v-if="index < maxValue">
-            <van-image :src="item.avartarImg || userImg" fit="fill" round width="26" height="26" />
+            <van-image :src="item.avartarImg || userImg" round width="26" height="26" />
           </div>
         </template>
         <div class="we-tips members-more" v-if="membersList.length > 5">+{{membersList.length - maxValue}}</div>
@@ -57,7 +57,10 @@ export default {
     }
   },
   methods: {
-
+    // 跳转到宿舍成员列表
+    toMembersList() {
+      this.$navigate.push('/pages/dormitory/membersList/main')
+    }
   }
 }
 </script>

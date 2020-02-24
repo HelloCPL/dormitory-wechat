@@ -1,5 +1,7 @@
 .container {
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+
+  .main-router {
+    padding-bottom: 100px;
+  }
 }

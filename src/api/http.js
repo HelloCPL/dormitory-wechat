@@ -1,26 +1,32 @@
 import {
+  Base64
+} from 'js-base64'
+import {
+  wxRequest
+} from '@/wx/index'
+import {
   showLoading,
   hideLoading,
   toast
 } from '@js/interaction'
 import tools from '@js/tools'
-import store from '@store'
-import {
-  wxRequest
-} from '@/wx/index'
+import store from '@store/index'
 const baseURL = process.env.API_BASE_URL
 
 // token 之后另外处理 -----------------
-let token = store.getters.token
+
 
 const http = {
   // get 请求，需要token存在
   get(url, data, config = {}) {
-    if (!token) {
+    const tokenGetter = store.getters.tokenGetter
+    if (!tokenGetter) {
       toast('用户token不存在')
       return Promise.reject('用户token不存在')
     }
     url = baseURL + url
+    config.header = config.header || {}
+    config.header.Authorization = http._encode()
     return http._handlerParams('GET', url, data, config)
   },
 
@@ -37,7 +43,14 @@ const http = {
 
   // post 请求，需要token存在
   post(url, data, config = {}) {
+    const tokenGetter = store.getters.tokenGetter
+    if (!tokenGetter) {
+      toast('用户token不存在')
+      return Promise.reject('用户token不存在')
+    }
     url = baseURL + url
+    config.header = config.header || {}
+    config.header.Authorization = http._encode()
     return http._handlerParams('POST', url, data, config)
   },
 
@@ -84,13 +97,19 @@ const http = {
           resolve(res)
         })
         .catch(err => {
-          toast('请求失败')
           reject(err)
         })
         .finally(() => {
           hideLoading()
         })
     })
+  },
+
+  // 处理token加密
+  _encode() {
+    const tokenGetter = store.getters.tokenGetter
+    const base64 = Base64.encode(tokenGetter + ':')
+    return 'Basic ' + base64
   },
 }
 

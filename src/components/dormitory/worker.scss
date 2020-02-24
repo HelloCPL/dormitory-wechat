@@ -1,0 +1,33 @@
+.worker-container {
+  width: 100%;
+  transition: height 2s linear 0s;
+
+  // 管理员列表
+  .worker-wrapper {
+    display: flex;
+    border-bottom: 1px solid $borderColor;
+  // transition: all 2s;
+
+
+    .left {
+      width: 30px;
+    }
+
+    .right {
+      flex: 1;
+      line-height: 18px;
+    }
+  }
+
+  // 展开或收起
+  .worker-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.title-divider-container {
+  width: 100%;
+
+  .divider-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      img {
+        width: 14px;
+        height: 14px;
+        margin-right: 4px;
+      }
+    }
+
+    .side {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

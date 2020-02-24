@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "dayjs": "^1.8.19",
+    "js-base64": "^2.5.2",
     "lodash": "^4.17.15",
     "mpvue": "^2.0.0",
     "node-sass": "^4.13.0",

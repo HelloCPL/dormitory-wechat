@@ -1,0 +1,45 @@
+.mine-container {
+  width: 100%;
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid $borderColor;
+    box-shadow: 0 0 2px #fff inset,
+      3px 6px 6px $borderColor;
+
+    .left {
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 2px;
+      }
+    }
+
+    .right {
+      flex: 1;
+      line-height: 16px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          flex: 1;
+        }
+
+        span {
+          white-space: nowrap;
+        }
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
