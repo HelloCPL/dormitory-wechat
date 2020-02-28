@@ -69,6 +69,7 @@ export const wxPreviewImage = (urls, index = 0) => {
   let current
   if (tools.isString(urls)) {
     current = urls
+    urls = [urls]
   } else if (tools.isArray(urls) && !tools.isEmptyArray(urls)) {
     current = urls[index]
   } else {

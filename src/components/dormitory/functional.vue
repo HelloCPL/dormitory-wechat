@@ -19,20 +19,20 @@ export default {
   data() {
     return {
       functionalList: [
-        { img: require('@icon/pay.png'), text: '缴费', url: '1' },
-        { img: require('@icon/repair.png'), text: '报修', url: '2' },
-        { img: require('@icon/apply.png'), text: '申请', url: '3' },
-        { img: require('@icon/suggest.png'), text: '投诉或建议', url: '4' },
-        { img: require('@icon/assess.png'), text: '宿舍评优', url: '5' },
-        { img: require('@icon/punish.png'), text: '宿舍违纪', url: '6' },
-        { img: require('@icon/check.png'), text: '卫生检查', url: '7' },
+        { img: require('@icon/pay.png'), text: '缴费', url: '/pages/dormitory/payment/main' },
+        { img: require('@icon/repair.png'), text: '报修', url: '' },
+        { img: require('@icon/apply.png'), text: '申请', url: '' },
+        { img: require('@icon/suggest.png'), text: '投诉或建议', url: '' },
+        { img: require('@icon/assess.png'), text: '宿舍评优', url: '' },
+        { img: require('@icon/punish.png'), text: '宿舍违纪', url: '' },
+        { img: require('@icon/check.png'), text: '卫生检查', url: '' },
       ]
     }
   },
   methods: {
     // 跳转到详情
     toDetail(url) {
-      console.log(url)
+      this.$navigate.push(url)
     }
   }
 }

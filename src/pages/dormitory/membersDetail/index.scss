@@ -1,0 +1,22 @@
+.members-detail-container {
+  width: 100%;
+
+  .members-header {
+    display: flex;
+
+    .right {
+      flex: 1;
+      line-height: 18px;
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

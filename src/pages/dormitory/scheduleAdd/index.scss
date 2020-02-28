@@ -1,0 +1,39 @@
+.schedule-add-container {
+  width: 100%;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+
+  .title {
+    border-bottom: 1px solid $borderColor;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+
+    .left {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .right {
+      flex: 1;
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

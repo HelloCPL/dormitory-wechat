@@ -13,7 +13,7 @@
       </div>
     </van-cell>
     <!-- 宿舍值日表 -->
-    <van-cell title="宿舍值日表" is-link>
+    <van-cell title="宿舍值日表" is-link @click="toSchedule">
       <div class="members-schedule">
         <span class="we-tips members-time">
           <img :src="timeImg" class="we-margin-top-2" />
@@ -60,6 +60,12 @@ export default {
     // 跳转到宿舍成员列表
     toMembersList() {
       this.$navigate.push('/pages/dormitory/membersList/main')
+    },
+
+    // 跳转到值日页面
+    toSchedule() {
+      this.$navigate.push('/pages/dormitory/schedule/main')
+
     }
   }
 }

@@ -1,0 +1,61 @@
+.schedule-container {
+  width: 100%;
+
+  .table {
+    width: 100%;
+    border-left: 1px solid $borderColor;
+    border-bottom: 1px solid $borderColor;
+    box-sizing: border-box;
+
+    .tr {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .bg-tr {
+      background: $bgColor;
+    }
+
+    .td {
+      border-right: 1px solid $borderColor;
+      border-top: 1px solid $borderColor;
+      padding: 5px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 18px;
+    }
+
+    .title {
+      min-height: 30px;
+      width: 100%;
+    }
+
+    .week {
+      min-height: 50px;
+      width: 15%;
+    }
+
+    .name {
+      min-height: 50px;
+      width: 35%;
+    }
+
+    .other {
+       min-height: 50px;
+       width: 50%;
+    }
+
+    .td-bg {
+      background: rgba(25, 137, 250, .8);
+      color: #fff;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

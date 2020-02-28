@@ -1,7 +1,13 @@
 {
   "pages": [
+    "pages/dormitory/payment/main",
+
     "pages/index/main",
 
+    "pages/dormitory/schedule/main",
+    "pages/dormitory/scheduleAdd/main",
+    "pages/dormitory/scheduleDormitoryAdd/main",
+    
     "pages/dormitory/membersList/main",
     "pages/dormitory/membersDetail/main",
     

@@ -3,7 +3,7 @@
     <!-- 时光详情 -->
     <div class="we-padding-15 records-wrapper">
       <div class="box-left">
-        <van-image :src="dataInfo.avatarUrl || userIcon" width="26" height="26" :radius="4" />
+        <van-image :src="dataInfo.avatarUrl || userIcon" width="30" height="30" :radius="4" />
       </div>
       <div class="box-right">
         <p class="we-color-black">{{dataInfo.username}}</p>

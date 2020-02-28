@@ -3,7 +3,7 @@
     <template v-for="(item, index) in membersList">
       <div class="members-wrapper" :index="index" @click="toMembersDetail(item.id)">
         <div class="left">
-          <van-image :src="item.avatarUrl || userIcon" width="26" height="26" :radius="4" />
+          <van-image :src="item.avatarUrl || userIcon" width="30" height="30" :radius="4" />
         </div>
         <div class="right">
           <p class="we-line-1"> {{item.username}}</p>

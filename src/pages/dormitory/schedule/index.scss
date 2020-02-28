@@ -1,0 +1,95 @@
+.schedule-container {
+  width: 100%;
+  padding-bottom: 90px;
+  box-sizing: border-box;
+
+  // 当前日期信息
+  .schedule-wrapper {
+    display: flex;
+
+    .left {
+      flex: 1;
+    }
+
+    .right {
+      white-space: nowrap;
+      display: flex;
+
+      .name {
+        max-width: 80px;
+        overflow: hidden;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .schedule-event {
+    padding: 0 0 20px 15px;
+    box-sizing: border-box;
+    border-left: 1px solid $blue;
+    position: relative;
+    line-height: 18px;
+
+    .time {
+      display: flex;
+      align-items: center;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -7.5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid $blue;
+      box-sizing: border-box;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      width: 300px;
+      height: 1px;
+      background: $bgColor;
+    }
+
+  }
+
+  // 底部按钮
+  .btn-today,
+  .btn-add {
+    position: fixed;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .btn-today {
+    right: 90px;
+    background: rgba(25, 137, 250, .9);
+    box-shadow: 2px 2px 5px rgb(158, 204, 250),
+      -2px -2px 5px #fff;
+  }
+
+  .btn-add {
+    right: 20px;
+    background: rgba(128, 132, 143, .9);
+    box-shadow: 2px 2px 5px rgb(204, 206, 211),
+      -2px -2px 5px #fff;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

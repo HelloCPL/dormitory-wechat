@@ -4,7 +4,7 @@
     <template v-for="(item, index) in dataList">
       <div class="we-padding-15 records-wrapper" :class="{'records-wrapper-border': index < dataList.length - 1}" :key="index">
         <div class="box-left">
-          <van-image :src="item.avatarUrl || userIcon" width="26" height="26" :radius="4" />
+          <van-image :src="item.avatarUrl || userIcon" width="30" height="30" :radius="4" />
         </div>
         <div class="box-right">
           <p class="we-color-black">{{item.username}}</p>

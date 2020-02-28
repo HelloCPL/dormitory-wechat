@@ -1,0 +1,31 @@
+.schedule-dormitory-add-container {
+  width: 100%;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+
+  .tag-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .tag-input {
+    padding: 0 8px;
+    width: 50px;
+    height: 14px !important;
+    line-height: 14px;
+    border-radius: 2px;
+    border: 1px solid $borderColor;
+    outline-style: none;
+    background: #fff;
+    color: $tipsColor;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .tag-padding {
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+  }
+}

@@ -165,44 +165,6 @@ const self = {
         return NaN;
     },
 
-    dateFormat(value, format) {
-        if (!(self.isDate(value) || (self.isNumber(value) && !self.isNaN(value)) || self.isString(value)))
-            return "";
-        if (self.isString(value)) {
-            value = value.replace(/-/gi, '/')
-            let val = Number(value);
-            if (self.isNumber(val) && !self.isNaN(val)) {
-                value = val;
-            }
-        }
-        let date;
-        try {
-            date = new Date(value);
-        } catch (e) {
-            return "";
-        }
-        if (date == "Invalid Date") return "";
-        // if (!value) return ''
-        // let date = new Date(value)
-        format = format || "YYYY-MM-DD hh:mm:ss";
-        let days = ["日", "一", "二", "三", "四", "五", "六"];
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-        let dateData = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-        let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-        let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-        let day = days[date.getDay()];
-        format = format.replace(/(YYYY)|(yyyy)/, year);
-        format = format.replace(/(MM)/, month);
-        format = format.replace(/(DD)|(dd)/, dateData);
-        format = format.replace(/(HH)|(hh)/, hours);
-        format = format.replace(/(mm)/, minutes);
-        format = format.replace(/(SS)|(ss)/, seconds);
-        format = format.replace(/(DAY)|(day)/, day);
-        return format;
-    },
-
     //  加法精度问题（可传多个，传入数值或字符串数值，否则返回 空字符串 ''）
     accAdd(...argument) {
         let max = 0,
@@ -318,36 +280,6 @@ const self = {
         }
         return "";
     },
-
-    // 去除富文本标签格式，返回文本
-    // 参数一：文本，参数二：是否保留空格，参数三：是否保留换行，参数四：是否段落缩进（当参数三为真时有效）
-    clearRichText(value, space = false, wrap = false, indent = false, tab = false) {
-        // 空格处理
-        if (space) {
-            value = value.replace(/(&nbsp;)/g, " ")
-        } else {
-            value = value.replace(/(&nbsp;)/g, "")
-            value = value.replace(/ /g, "")
-        }
-        // 换行处理
-        if (wrap) {
-            if (indent) {
-                value = value.replace(/<br\/?[^>]*>/g, "\n      ")
-            } else {
-                value = value.replace(/<br\/?[^>]*>/g, "\n")
-            }
-        } else {
-            value = value.replace(/(\n)/g, "") // 换行
-            value = value.replace(/(\t)/g, "") // tab水平制表
-            value = value.replace(/(\r)/g, "") // 回车
-        }
-        if (!space && !wrap) value = value.replace(/\s*/g, "") // 空白和换行
-        if (tab) value = value.replace(/<\/[p|div|h1|h2|h3|h4|h5|h6]>/g, "\n      ")
-        value = value.replace(/<\/?[^>]*>/g, "")
-        // value = value.replace(/(&lt;)\/?[^(&gt;)]*(&gt)/g, "")
-        if (wrap && indent) value = '      ' + value
-        return value
-    }
 };
 
 export default self;
