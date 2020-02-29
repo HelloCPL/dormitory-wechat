@@ -1,0 +1,41 @@
+.paid-container {
+  width: 100%;
+  padding-bottom: 30px;
+  
+  // 未缴费列表
+  .unpaid-box {
+    width: 100%;
+    display: flex;
+
+    .left {
+      flex: 1;
+
+      .unpaid-box-side {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+          width: 80px;
+          white-space: nowrap;
+        }
+
+        .word {
+          flex: 1;
+          text-align: right;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

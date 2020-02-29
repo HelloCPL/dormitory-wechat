@@ -12,7 +12,7 @@
           <div class="we-padding-2 right">
             <van-field :value="item" maxlength="12" placeholder="请输入姓名" @input="onInput($event, index)" />
           </div>
-          <div class="we-padding-5 left" @click="deletePeopleList(index)">
+          <div class="we-padding-5 left" @click="deletePeopleList(index)" v-if="peopleList.length > 1">
             <img :src="closeIcon" alt="">
           </div>
         </div>
@@ -24,7 +24,7 @@
       <span class="we-color-blue" @click="addPeopleList">新增人员</span>
     </div>
     <!-- 发布按钮 -->
-    <div class="we-fixed we-padding we-bg-white">
+    <div class="we-margin-btn we-padding">
       <van-button type="info" size="large" @click="onSubmit">提交</van-button>
     </div>
   </div>

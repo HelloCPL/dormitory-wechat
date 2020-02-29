@@ -20,12 +20,12 @@ export default {
     return {
       functionalList: [
         { img: require('@icon/pay.png'), text: '缴费', url: '/pages/dormitory/payment/main' },
-        { img: require('@icon/repair.png'), text: '报修', url: '' },
-        { img: require('@icon/apply.png'), text: '申请', url: '' },
-        { img: require('@icon/suggest.png'), text: '投诉或建议', url: '' },
-        { img: require('@icon/assess.png'), text: '宿舍评优', url: '' },
-        { img: require('@icon/punish.png'), text: '宿舍违纪', url: '' },
-        { img: require('@icon/check.png'), text: '卫生检查', url: '' },
+        { img: require('@icon/repair.png'), text: '报修', url: '/pages/dormitory/repair/main' },
+        { img: require('@icon/apply.png'), text: '申请', url: '/pages/dormitory/apply/main' },
+        { img: require('@icon/suggest.png'), text: '投诉或建议', url: '/pages/dormitory/suggest/main' },
+        { img: require('@icon/assess.png'), text: '宿舍评优', url: '/pages/dormitory/assess/main' },
+        { img: require('@icon/punish.png'), text: '宿舍违纪', url: '/pages/dormitory/punish/main' },
+        { img: require('@icon/check.png'), text: '卫生检查', url: '/pages/dormitory/check/main' },
       ]
     }
   },

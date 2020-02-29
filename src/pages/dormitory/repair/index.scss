@@ -1,0 +1,18 @@
+.repair-container {
+  width: 100%;
+
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    span {
+      text-decoration: underline;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

@@ -5,7 +5,7 @@
     <!-- 图片上传 -->
     <upload-file v-model="imgList" />
 
-    <div class="we-fixed we-padding we-bg-white">
+    <div class="we-margin-btn we-padding">
       <van-button type="info" size="large" @click="onSubmit">发布</van-button>
     </div>
   </div>

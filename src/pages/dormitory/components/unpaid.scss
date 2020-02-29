@@ -1,0 +1,63 @@
+.unpaid-container {
+  width: 100%;
+  padding-bottom: 30px;
+
+  // 头部未缴费信息
+  .unpaid-header {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    position: relative;
+    padding: 40px 15px 0 15px;
+    box-sizing: border-box;
+
+    .price {
+      font-size: 30px;
+    }
+
+    .help {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      bottom: 20px;
+      text-decoration: underline;
+    }
+  }
+
+  // 未缴费列表
+  .unpaid-box {
+    width: 100%;
+    display: flex;
+    
+    .left {
+      flex: 1;
+
+      .unpaid-box-side {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+          width: 80px;
+          white-space: nowrap;
+        }
+
+        .word {
+          flex: 1;
+          text-align: right;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

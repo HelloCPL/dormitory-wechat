@@ -1,8 +1,26 @@
 {
   "pages": [
-    "pages/dormitory/payment/main",
-
     "pages/index/main",
+
+    "pages/dormitory/apply/main",
+
+    "pages/dormitory/suggest/main",
+
+    "pages/dormitory/assess/main",
+
+    "pages/dormitory/punish/main",
+
+    "pages/dormitory/check/main",
+
+
+
+
+    "pages/dormitory/repair/main",
+    "pages/dormitory/repairList/main",
+    "pages/dormitory/repairEvaluate/main",
+
+    "pages/dormitory/payment/main",
+    "pages/dormitory/paymentDetail/main",
 
     "pages/dormitory/schedule/main",
     "pages/dormitory/scheduleAdd/main",
@@ -28,6 +46,7 @@
     "van-tabs": "/static/vant/tabs/index",
     "van-tab": "/static/vant/tab/index",
     "van-tag": "/static/vant/tag/index",
+    "van-rate": "/static/vant/rate/index",
     "van-image": "/static/vant/image/index",
     "van-transition": "/static/vant/transition/index",
     "van-sticky": "/static/vant/sticky/index",

@@ -24,7 +24,7 @@
       </div>
     </div>
     <!-- 发布按钮 -->
-    <div class="we-fixed we-padding we-bg-white">
+    <div class="we-padding">
       <van-button type="info" size="large" @click="onSubmit">提交</van-button>
     </div>
 

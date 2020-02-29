@@ -1,0 +1,36 @@
+.repair-list-container {
+  width: 100%;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+
+  .repair-box {
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px $borderColor,
+    -2px -2px 5px $borderColor;
+  }
+
+  .repair-box-side {
+    display: flex;
+    justify-content: space-between;
+    line-height: 18px;
+
+    .title {
+      white-space: nowrap;
+    }
+
+    .left {
+      width: 80px;
+    }
+
+    .right {
+      flex: 1;
+      text-align: right;
+    }
+  }
+
+  .repair-box-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
