@@ -4,10 +4,12 @@
     <template v-for="(item, index) in dataList">
       <div class="we-padding-15 records-wrapper" :class="{'records-wrapper-border': index < dataList.length - 1}" :key="index">
         <div class="box-left">
-          <van-image :src="item.avatarUrl || userIcon" width="30" height="30" :radius="4" />
+          <van-image :src="item.avatarUrl || userIcon" width="30" height="30" :radius="4" @click="toMembersDetail(item.uid)" />
         </div>
         <div class="box-right">
-          <p class="we-color-black">{{item.username}}</p>
+          <p class="we-color-black">
+            <span @click="toMembersDetail(item.uid)">{{item.username}}</span>
+            </p>
           <p class="we-tips we-margin-top-2">{{item.updateDate}}</p>
           <div class="we-margin-top-5 we-text content" v-if="item.content">
             <template v-html="item.content"></template>
@@ -195,6 +197,11 @@ export default {
       status = status == 1 ? 0 : 1
       this.$set(this.dataList[index], 'likeStatus', status)
       this.$set(this.dataList[index], 'likeCount', count)
+    },
+
+    // 跳转到个人信息
+    toMembersDetail(uid) {
+      this.$navigate.push('/pages/dormitory/membersDetail/main?uid=' + uid)
     }
   }
 }

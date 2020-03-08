@@ -1,5 +1,28 @@
-.repair-list-container {
+.apply-container {
   width: 100%;
 
-  
+  // 子栏目
+  .repair-menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 15px 0px 15px;
+    box-sizing: border-box;
+
+    span {
+      border-radius: 2px;
+      border: 1px solid $borderColor;
+      box-shadow: 1px 2px 5px $borderColor;
+      padding: 8px 15px;
+      color: $tipsColor;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .active {
+      border: 1px solid #ed3f14;
+      color: #fff;
+      background: #ed3f14;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="we-bg we-padding repair-list-container">
     <template v-for="(item, index) in dataList">
-      <div class="we-padding-10 we-margin-bottom-10 we-bg-white we-color-tips repair-box" :key="index">
+      <div class="we-padding-10 we-margin-bottom-10 we-bg-white we-color-tips we-shadow" :key="index">
         <div class="we-margin-bottom-5 repair-box-side">
           <span class="we-title title">编号：292929</span>
           <span class="we-color-green right" v-if="item.state == 0">进行中</span>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="we-margin-top-10 repair-box-btn" v-if="item.state == 2">
-          <van-button plain type="warning" size="small">评价</van-button>
+          <van-button plain type="warning" size="small" @click="toRepairEvaluate(item.id)">评价</van-button>
         </div>
       </div>
     </template>
@@ -74,7 +74,10 @@ export default {
     }
   },
   methods: {
-
+    // 去评价
+    toRepairEvaluate(id) {
+      this.$navigate.push('/pages/dormitory/repairEvaluate/main?id=' + id)
+    }
   },
   watch: {
     dataList: {

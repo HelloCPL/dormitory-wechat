@@ -1,0 +1,60 @@
+.apply-detail-container {
+  width: 100%;
+  line-height: 18px;
+
+  // 审核状态
+  .apply-title {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right {
+      white-space: nowrap;
+    }
+  }
+
+  .apply-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // 信息
+  .apply-side {
+    display: flex;
+    margin-bottom: 2px;
+
+    .left {
+      width: 80px;
+    }
+
+    .right {
+      flex: 1;
+    }
+  }
+
+  // 联系工作人员
+  .apply-footer {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}

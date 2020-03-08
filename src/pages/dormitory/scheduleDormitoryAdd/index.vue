@@ -3,7 +3,7 @@
     <!-- 标题 内容 -->
     <van-cell-group>
       <van-field label="标题" input-align="right" :value="title" placeholder="请输入日程标题" @input="onInputTitle" />
-      <van-field :value="content" label="内容" input-align="right" type="textarea" placeholder="请输入日程内容" autosize @input="onInputContent" />
+      <van-field :value="content" label="内容" input-align="right" type="textarea" placeholder="请输入日程内容..." autosize @input="onInputContent" />
     </van-cell-group>
     <!-- 选择时间 -->
     <van-cell title="选择时间" :value="startDate" is-link @click="showFlag = true" />
@@ -24,7 +24,7 @@
       </div>
     </div>
     <!-- 发布按钮 -->
-    <div class="we-padding">
+    <div class="we-margin-btn we-padding">
       <van-button type="info" size="large" @click="onSubmit">提交</van-button>
     </div>
 

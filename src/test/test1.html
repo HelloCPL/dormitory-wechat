@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    span {
+      line-height: 1.5;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+</body>
+
+</html>
+<script>
+  let divSign =
+    "<div style=\"size:595.3pt 841.9pt; margin:72.0pt 90.0pt 72.0pt 90.0pt; mso-header-margin:42.55pt; mso-footer-margin:49.6pt; mso-paper-source:0; page:WordSection1; layout-grid:15.6pt; layout-grid:15.6pt\">"
+  let pSign =
+    "<p style=\"line-height:150%;mso-style-unhide:no;mso-style-qformat:yes;mso-style-parent:\"\";margin:0cm;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;mso-pagination:none;margin-left:70.0pt;text-indent:-70.0pt;mso-char-indent-count:-5.0\">"
+  let spanHei =
+    "<span style=\"font-size:14.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-hansi-font-family:Calibri;mso-hansi-theme-font:minor-latin\">"
+  let spanSong =
+    "<span style=\"font-size:14.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:\"Times New Roman\";mso-hansi-font-family:Calibri;mso-hansi-theme-font:minor-latin\">"
+  let spanHeiNone = "<span lang=EN-US><span style=\"mso-spacerun:yes\">    </span></span>"
+  let spanSongNone =
+    "<span lang=EN-US style=\"font-size:14.0pt;mso-bidi-font-size:12.0pt; font-family:\"Times New Roman\",\"serif\"; mso-fareast-font-family:宋体; mso-hansi-font-family:Calibri;mso-hansi-theme-font: minor-latin;mso-bidi-font-family:\"Times New Roman\";mso-bidi-theme-font:minor-bidi\"><o:p></o:p></span>"
+  // let num = spanHei + "案" + spanHeiNone + "号：</span>" + spanSong + ataMap.get("customNum") + "</span>" + spanSongNone
+  // let title = pSign + spanHei + "案" + spanHeiNone + "题：</span>" + spanSong + ataMap.get("title") + "</span>" +
+  //   spanSongNone
+  // let people = pSign + spanHei + "提 案 者：</span>" + spanSong + ataMap.get("customNum") + "</span>" + spanSongNone
+  // let content = pSign + spanHei + "内" + spanHeiNone + "容：</span>"
+  // buffer.append(num + title + people + content)
+
+  // 例子
+  let num1 = spanHei + "案" + spanHeiNone + "号：</span>" + spanSong + "我是案号123123123123123123123123313" + "</span>" +
+    spanSongNone
+  let title1 = pSign + spanHei + "案" + spanHeiNone + "题：</span>" + "我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容" +
+    "</span>" +
+    spanSongNone
+  let people1 = pSign + spanHei + "提 案 者：</span>" + spanSong + "我是提案者" + "</span>" + spanSongNone
+  let content1 = pSign + spanHei + "内" + spanHeiNone + "容：</span>"
+</script>

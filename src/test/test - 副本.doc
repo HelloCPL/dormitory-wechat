@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div>
+    <div
+      style="display: inline-block; vertical-align:text-top;width: 80px; text-align: justify; text-align-last:justify">
+      <span>标题：</span>
+    </div>
+    <div
+      class="display: inline-block; vertical-align:text-top; width: 200px; text-align: justify; text-align-last:left">
+      <span>标题标题标题标题标题标题标题标题标题sdjkfjdlsfa标题标题标题标题标新出口铝进口量大幅偶尔玩什看电视剧女控制覅偶切分题</span>
+    </div>
+  </div>
+
+  <div>
+    <div
+      style="display: inline-block; vertical-align:text-top;width: 80px; text-align: justify; text-align-last:justify">
+      <span>标的题：</span>
+    </div>
+    <div
+      class="display: inline-block; vertical-align:text-top; width: 200px; text-align: justify; text-align-last:left">
+      <span>标题标题标题标题标题标题标题标题标题sdjkfjdlsfa标题标题标题标题标新出口铝进口量大幅偶尔玩什看电视剧女控制覅偶切分题</span>
+    </div>
+  </div>
+
+    <div>
+      <div
+        style="display: inline-block; vertical-align:text-top;width: 80px; text-align: justify; text-align-last:justify">
+        <span>标订单题：</span>
+      </div>
+      <div
+        class="display: inline-block; vertical-align:text-top; width: 200px; text-align: justify; text-align-last:left">
+        <span>标题标题标题标题标题标题标题标题标题sdjkfjdlsfa标题标题标题标题标新出口铝进口量大幅偶尔玩什看电视剧女控制覅偶切分题</span>
+      </div>
+    </div>
+
+
+</body>
+
+</html>

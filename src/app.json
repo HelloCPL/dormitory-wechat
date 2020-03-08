@@ -1,8 +1,28 @@
 {
   "pages": [
+
     "pages/index/main",
 
+    "pages/dormitory/recordsAdd/main",
+    "pages/dormitory/recordsList/main",
+    "pages/dormitory/recordsDetail/main",
+
+    "pages/dormitory/membersList/main",
+    "pages/dormitory/membersDetail/main",
+
+    "pages/dormitory/schedule/main",
+    "pages/dormitory/scheduleAdd/main",
+    "pages/dormitory/scheduleDormitoryAdd/main",
+
+    "pages/dormitory/payment/main",
+    "pages/dormitory/paymentDetail/main",
+
+    "pages/dormitory/repair/main",
+    "pages/dormitory/repairList/main",
+    "pages/dormitory/repairEvaluate/main",
+
     "pages/dormitory/apply/main",
+    "pages/dormitory/applyDetail/main",
 
     "pages/dormitory/suggest/main",
 
@@ -10,29 +30,8 @@
 
     "pages/dormitory/punish/main",
 
-    "pages/dormitory/check/main",
-
-
-
-
-    "pages/dormitory/repair/main",
-    "pages/dormitory/repairList/main",
-    "pages/dormitory/repairEvaluate/main",
-
-    "pages/dormitory/payment/main",
-    "pages/dormitory/paymentDetail/main",
-
-    "pages/dormitory/schedule/main",
-    "pages/dormitory/scheduleAdd/main",
-    "pages/dormitory/scheduleDormitoryAdd/main",
+    "pages/dormitory/check/main"
     
-    "pages/dormitory/membersList/main",
-    "pages/dormitory/membersDetail/main",
-    
-    "pages/dormitory/recordsAdd/main",
-    "pages/dormitory/recordsList/main",
-    "pages/dormitory/recordsDetail/main"
-
   ],
   "usingComponents": {
     "van-button": "/static/vant/button/index",
@@ -52,6 +51,7 @@
     "van-sticky": "/static/vant/sticky/index",
     "van-uploader": "/static/vant/uploader/index",
     "van-notice-bar": "/static/vant/notice-bar/index"
+    
   },
   "window": {
     "backgroundTextStyle": "light",

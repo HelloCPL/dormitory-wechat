@@ -64,7 +64,7 @@ export default {
 // 设置多行文本输入框最小高度
 .records-add-container {
   .van-field__body--textarea {
-    min-height: 80px !important;
+    min-height: 50px !important;
   }
 }
 </style>

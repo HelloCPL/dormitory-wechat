@@ -1,0 +1,65 @@
+.suggest-container {
+  width: 100%;
+
+  // 子栏目
+  .repair-menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 15px 0px 15px;
+    box-sizing: border-box;
+
+    span {
+      border-radius: 2px;
+      border: 1px solid $borderColor;
+      box-shadow: 1px 2px 5px $borderColor;
+      padding: 8px 15px;
+      color: $tipsColor;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .active {
+      border: 1px solid #ed3f14;
+      color: #fff;
+      background: #ed3f14;
+    }
+  }
+
+  // 投诉或建议
+  .suggest-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 40px;
+    box-sizing: border-box;
+
+    .box {
+      width: 70px;
+      height: 80px;
+      border-radius: 4px;
+      position: relative;
+      background: #ccc;
+
+      img {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translate(-50%);
+        width: 35px;
+        height: 35px;
+      }
+
+      span {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+
+    .active {
+      background: $red;
+    }
+  }
+}

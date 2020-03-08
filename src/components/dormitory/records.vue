@@ -8,9 +8,12 @@
             <div class="we-padding records-wrapper">
               <!-- 消息头部 -->
               <div class="records-wrapper-header">
-                <van-image :src="item.avatarUrl || userImg" fit="fill" :radius="4" lazy-load width="26" height="26" />
+                <van-image :src="item.avatarUrl || userImg" fit="fill" :radius="4" lazy-load width="26" height="26"
+                  @click="toMembersDetail(item.uid)" />
                 <div class="we-padding-left-5 records-name">
-                  <p>{{item.username}}</p>
+                  <p>
+                    <span @click="toMembersDetail(item.uid)">{{item.username}}</span>
+                  </p>
                   <p class="we-padding-top-2 we-font-12 we-color-tips">{{item.updateDate}}</p>
                 </div>
                 <div class="records-like" @click="toggleLikeStatus(item.likeStatus, index, item.likeCount)">
@@ -105,6 +108,11 @@ export default {
       status = status ? 0 : 1
       this.$set(this.recordsList[index], 'likeStatus', status)
       this.$set(this.recordsList[index], 'likeCount', count)
+    },
+
+    // 跳转到个人信息
+    toMembersDetail(uid) {
+      this.$navigate.push('/pages/dormitory/membersDetail/main?uid=' + uid)
     },
 
     // 跳转添加时光

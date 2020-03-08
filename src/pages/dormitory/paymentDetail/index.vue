@@ -1,7 +1,7 @@
 <template>
   <div class="payment-detail-container">
     <!-- 账单详情 -->
-    <div class="we-margin-15 we-padding-bottom-20 we-bg-white payment-wrapper">
+    <div class="we-margin-15 we-padding-bottom-20 we-bg-white we-shadow payment-wrapper">
       <div class="we-padding title">
         <span class="we-title">账单编号：{{dataInfo.orderId}}</span>
         <span class="we-color-red we-font-12" v-if="dataInfo.state == 0">待支付</span>

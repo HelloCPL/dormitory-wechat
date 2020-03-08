@@ -9,7 +9,6 @@ import {
 
 // 提示
 export const toast = (params) => {
-  console.log(123, params)
   let obj = {
     icon: 'none',
     image: '',

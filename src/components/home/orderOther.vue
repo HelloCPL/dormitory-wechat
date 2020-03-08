@@ -1,7 +1,7 @@
 <template>
   <div class="we-bg we-padding other-container">
     <template v-for="(item, index) in otherList">
-      <div class="we-bg-white we-padding-10 we-margin-bottom-10 wrapper" :key="index">
+      <div class="we-bg-white we-padding-10 we-margin-bottom-10 we-shadow wrapper" :key="index">
         <div class="left">
           <img :src="otherIcon" />
         </div>

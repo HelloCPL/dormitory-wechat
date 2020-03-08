@@ -1,0 +1,5 @@
+buffer.append("<p style=\"margin:0pt; orphans:0; text-align:justify; widows:0\"><span style=\"font-family:黑体; font-size:14pt\">案    号：</span><span style=\"font-family:宋体; font-size:14pt\">" + dataMap.get("customNum") + "</span></p >\n" +
+  "\t<p style=\"margin:0pt; orphans:0; text-align:justify; widows:0\"><span style=\"font-family:黑体; font-size:14pt\">案    题：</span><span style=\"font-family:宋体; font-size:14pt\">" + dataMap.get("title") + "</span></p >\n" +
+  "\t<p style=\"margin:0pt; orphans:0; text-align:justify; widows:0\"><span style=\"font-family:黑体; font-size:14pt\">提 案 者：</span><span style=\"font-family:宋体; font-size:14pt\">" + dataMap.get("submitUserName") + "</span></p >\n" +
+  "\t<p style=\"margin:0pt; orphans:0; text-align:justify; widows:0\"><span style=\"font-family:黑体; font-size:14pt\">类    别：</span><span style=\"font-family:宋体; font-size:14pt\">" + dataMap.get("contentMainTypeView") + "</span></p >\n" +
+  "\t<p style=\"margin:0pt; orphans:0; text-align:left; widows:0\"><span style=\"font-family:黑体; font-size:14pt\">内    容：</span>");

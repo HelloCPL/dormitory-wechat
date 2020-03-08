@@ -2,7 +2,7 @@
   <div class="we-bg we-padding-left-10 we-padding-bottom-10 chart-container" v-if="dataList.length">
     <template v-for="(item, index) in dataList">
       <div class="we-padding-top-10 we-padding-right-10 chart-wrapper" :key="index">
-        <div class="we-bg-white we-padding-5 chart-box">
+        <div class="we-bg-white we-padding-5 we-shadow chart-box">
           <img :src="item.imgList[0].url || chartImg" alt="">
           <div class="chart-word">
             <span class="we-tips we-line-2">{{item.title}}</span>

@@ -1,0 +1,22 @@
+.assess-container {
+  width: 100%;
+  min-height: 100vh;
+
+  .assess-charts-title {
+    color: #666;
+  }
+
+  .assess-charts-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  .assess-scope {
+    display: flex;
+    align-items: center;
+  }
+
+  .assess-content {
+    line-height: 18px;
+  }
+}

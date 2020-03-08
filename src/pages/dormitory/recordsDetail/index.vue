@@ -3,10 +3,12 @@
     <!-- 时光详情 -->
     <div class="we-padding-15 records-wrapper">
       <div class="box-left">
-        <van-image :src="dataInfo.avatarUrl || userIcon" width="30" height="30" :radius="4" />
+        <van-image :src="dataInfo.avatarUrl || userIcon" width="30" height="30" :radius="4" @click="toMembersDetail(dataInfo.uid)" />
       </div>
       <div class="box-right">
-        <p class="we-color-black">{{dataInfo.username}}</p>
+        <p class="we-color-black">
+          <span @click="toMembersDetail(dataInfo.uid)">{{dataInfo.username}}</span>
+        </p>
         <p class="we-tips we-margin-top-2">{{dataInfo.updateDate}}</p>
         <div class="we-margin-top-5 we-text content" v-if="dataInfo.content">
           <template v-html="dataInfo.content"></template>
@@ -152,7 +154,13 @@ export default {
       status = status == 1 ? 0 : 1
       this.$set(this.dataInfo, 'likeStatus', status)
       this.$set(this.dataInfo, 'likeCount', count)
-    }
+    },
+
+    // 跳转到个人信息
+    toMembersDetail(uid) {
+      this.$navigate.push('/pages/dormitory/membersDetail/main?uid=' + uid)
+    },
+
   }
 }
 </script>
