@@ -23,7 +23,7 @@
               </div>
               <!-- 消息文本 -->
               <div @click="toRecordsDetail(item.id)">
-                <div class="we-padding-top-10 we-line-2 records-info">
+                <div class="we-padding-top-5 we-line-2 records-info">
                   <template v-html="item.content"></template>
                 </div>
                 <!-- 消息图片 -->
@@ -62,7 +62,7 @@ export default {
       unLikeIcon: require('@icon/icon_like.png'),
       iconImg: require('@icon/icon_filter.png'),
 
-      testImg: require('@img/banner1.jpg'),
+      testImg: require('@img/banner.jpg'),
       previousMargin: '15px', //30px
       nextMargin: '40px', // 0px
       recordsList: [

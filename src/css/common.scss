@@ -3,6 +3,7 @@ body {
   font-family: PingFangSC-Regular, sans-serif;
   font-size: $normalFont;
   color: $textColor;
+  line-height: 130%;
   background: $bgColor;
   width: 100%;
   min-height: 100%;
@@ -20,16 +21,19 @@ body {
 .we-title {
   font-size: $largeFont;
   color: $titleColor;
+  line-height: 130%;
 }
 
 .we-text {
   font-size: $normalFont;
   color: $textColor;
+  line-height: 130%;
 }
 
 .we-tips {
   font-size: $smallFont;
   color: $tipsColor;
+  line-height: 130%;
 }
 
 // 1-6行显示，多出部分以省略号...显示
@@ -92,22 +96,27 @@ body {
 
 .we-border-1 {
   border: 1px solid $borderColor;
+  box-sizing: border-box;
 }
 
 .we-border-top-1 {
   border-top: 1px solid $borderColor;
+  box-sizing: border-box;
 }
 
 .we-border-bottom-1 {
   border-bottom: 1px solid $borderColor;
+  box-sizing: border-box;
 }
 
 .we-border-left-1 {
   border-left: 1px solid $borderColor;
+  box-sizing: border-box;
 }
 
 .we-border-right-1 {
   border-right: 1px solid $borderColor;
+  box-sizing: border-box;
 }
 
 // 间距

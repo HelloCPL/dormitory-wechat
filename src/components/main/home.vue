@@ -69,9 +69,9 @@ export default {
       addIcon: require('@icon/icon_add_blue.png'),
       active: 0,
       swiperList: [
-        { img: require('@img/banner1.jpg') },
-        { img: require('@img/banner2.jpg') },
-        { img: require('@img/banner3.jpg') }
+        { img: require('@img/banner.jpg') },
+        { img: require('@img/banner.jpg') },
+        { img: require('@img/banner.jpg') }
       ]
     }
   },

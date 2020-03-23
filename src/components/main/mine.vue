@@ -14,13 +14,13 @@
     <div class="we-margin-top-10">
       <van-cell-group>
         <template v-for="(item, index) in functionalList">
-          <van-cell :title="item.title" :value="item.value" is-link :key="index" />
+          <van-cell :title="item.title" is-link :key="index" @click="toNextPage(item.url)" />
         </template>
       </van-cell-group>
     </div>
     <!-- 学校信息 -->
     <div class="we-margin-top-10">
-      <van-cell title="我的学校" value="广东技术师范学院" is-link />
+      <van-cell title="我的学校" is-link @click="toNextPage('/pages/mine/school/main')" />
     </div>
   </div>
 </template>
@@ -42,16 +42,17 @@ export default {
       noticeBarText: '如果未实名，这个通知就会显示，快点去认证吧。。。',
 
       functionalList: [
-        { title: '个人物品', value: '查看', url: '' },
-        { title: '来访人员', value: '申请', url: '' },
-        { title: '出入品', value: '登记', url: '' },
-        { title: '离返校', value: '登记', url: '' },
-        { title: '托管', value: '申请', url: '' },
+        { title: '个人物品', url: '/pages/mine/belongings/main' },
+        { title: '申请', url: '/pages/mine/apply/main' }, // 来访人员 出入品 托管
+        { title: '离返校登记', url: '/pages/mine/leaveAndReturn/main' },
       ]
     }
   },
   methods: {
-
+    // 跳转到其他页面
+    toNextPage(url) {
+      this.$navigate.push(url)
+    }
   }
 }
 </script>

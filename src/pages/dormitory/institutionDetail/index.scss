@@ -1,0 +1,15 @@
+.institution-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 80px;
+
+  .title {
+    line-height: 22px;
+  }
+
+  .content,
+  .content p {
+    line-height: 20px;
+    text-indent: 2em;
+  }
+}

@@ -2,6 +2,14 @@
   "pages": [
 
     "pages/index/main",
+    "pages/mine/leaveAndReturn/main",
+    "pages/mine/school/main",
+    "pages/mine/belongings/main",
+
+    "pages/mine/authentication/main",
+    
+    "pages/mine/apply/main",
+
 
     "pages/dormitory/recordsAdd/main",
     "pages/dormitory/recordsList/main",
@@ -30,8 +38,13 @@
 
     "pages/dormitory/punish/main",
 
-    "pages/dormitory/check/main"
-    
+    "pages/dormitory/check/main",
+
+    "pages/dormitory/workerDetail/main",
+
+    "pages/dormitory/institutionDetail/main"
+
+
   ],
   "usingComponents": {
     "van-button": "/static/vant/button/index",

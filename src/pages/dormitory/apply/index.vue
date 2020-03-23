@@ -5,7 +5,10 @@
         <!-- 申请类型选择 -->
         <picker @change="onChangeType" :range="typeList">
           <div>
-            <van-cell title="申请类型" is-link :value="type" />
+            <van-cell title="申请类型" is-link>
+              <span class="we-color-text" v-if="type">{{type}}</span>
+              <span class="we-color-tips" v-else>请选择</span>
+            </van-cell>
           </div>
         </picker>
         <!-- 申请起始时间选择 -->

@@ -5,7 +5,7 @@
 
     <template v-for="(item, index) in workerList">
       <van-transition name="fade" :duration="600" :key="index" v-if="index < max || show">
-        <div class="we-padding worker-wrapper">
+        <div class="we-padding worker-wrapper" @click="toWorkerDetail(item.id)">
           <div class="left">
             <van-image :src="item.avatarUrl || userImg" width="26" height="26" radius="2" lazy-load />
           </div>
@@ -44,11 +44,11 @@ export default {
       upImg: require('@icon/icon_up1_blue.png'),
       downImg: require('@icon/icon_down1_blue.png'),
       workerList: [
-        { avatarUrl: '', workerName: '张三', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务，为学生服务' },
-        { avatarUrl: '', workerName: '李四', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务' },
-        { avatarUrl: '', workerName: '王五', instroduce: '为人民服务，为学生服务' },
-        { avatarUrl: '', workerName: '赵六', instroduce: '为人民服务' },
-        { avatarUrl: '', workerName: '吴七', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务' },
+        { id: 1, avatarUrl: '', workerName: '张三', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务，为学生服务' },
+        { id: 1, avatarUrl: '', workerName: '李四', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务' },
+        { id: 1, avatarUrl: '', workerName: '王五', instroduce: '为人民服务，为学生服务' },
+        { id: 1, avatarUrl: '', workerName: '赵六', instroduce: '为人民服务' },
+        { id: 1, avatarUrl: '', workerName: '吴七', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务' },
       ],
       show: false,
       tipsWord: '展开'
@@ -62,7 +62,12 @@ export default {
       setTimeout(() => {
         this.tipsWord = flag ? '展开' : '收起'
       }, 150)
-    }
+    },
+
+    // 跳转到管理员信息页面
+    toWorkerDetail(id) {
+      this.$navigate.push(`/pages/dormitory/workerDetail/main?id=${id}`)
+    },
   }
 }
 </script>
