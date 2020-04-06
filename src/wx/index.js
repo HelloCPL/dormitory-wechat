@@ -33,6 +33,7 @@ import {
 // 导入文件上传处理
 import {
   wxUploadFile,
+  wxDownloadFile,
   wxChooseImage,
   wxPreviewImage
 } from './uploader'
@@ -60,6 +61,7 @@ export {
   wxHideLoading,
   wxShowModal,
   wxUploadFile,
+  wxDownloadFile,
   wxChooseImage,
   wxPreviewImage,
   wxSetNavigationBarTitle,

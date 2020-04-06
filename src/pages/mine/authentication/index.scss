@@ -2,43 +2,9 @@
   width: 100%;
   min-height: 100vh;
 
-  // 步骤条
-  .authen-steps {
-    padding: 20px 80px;
-    box-sizing: border-box;
+  .header-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
   }
-
-  // 宿舍选择
-  .authen-dor {
-    position: relative;
-
-    .authen-dor-box {
-      position: absolute;
-      right: 15px;
-      bottom: 48px;
-      width: 200px;
-      max-height: 100px;
-      overflow-y: auto;
-      border-radius: 2px;
-      background: #fff;
-      z-index: 9;
-    }
-
-    .authen-dor-word {
-      height: 35px;
-      line-height: 35px;
-
-    }
-  }
-
-  // 底部按钮
-  .btn-box {
-    display: flex;
-    justify-content: space-between;
-
-    .btn {
-      width: 45%;
-    }
-  }
-
 }

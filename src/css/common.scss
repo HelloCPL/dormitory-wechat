@@ -150,6 +150,30 @@ body {
   -2px -2px 5px $borderColor;
 }
 
+// flex 布局
+.we-flex-al,
+.we-flex-jc,
+.we-flex-al-jc,
+.we-flex-js-al,
+.we-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.we-flex-al {
+  align-items: center;
+}
+
+.we-flex-jc {
+  justify-content: space-between;
+}
+
+.we-flex-al-jc,
+.we-flex-js-al {
+  align-items: center;
+  justify-content: space-between;
+}
+
 .we-nowrap {
   white-space: nowrap;
 }

@@ -31,15 +31,15 @@ const navigate = {
 
   // 处理 config 参数 isLogin 要求登录 isAuth 要求认证
   _checkConfig(config = {}) {
-    const tokenGetter1 = store.getters.tokenGetter1
-    const authenticationGetter = store.getters.authenticationGetter
+    const isLoginGetter = store.getters.isLoginGetter
+    const isAuthGetter = store.getters.isAuthGetter
     config.isLogin = tools.isBoolean(config.isLogin) ? config.isLogin : true
     config.isAuth = tools.isBoolean(config.isAuth) ? config.isAuth : true
-    if (config.isLogin && !tokenGetter1) {
+    if (config.isLogin && !isLoginGetter) {
       toast('登录后才能访问，请前往登录！')
       return false
     }
-    if (config.isAuth && !authenticationGetter) {
+    if (config.isAuth && !isAuthGetter) {
       toast('实名认证后才能访问，请前往实名认证！')
       return false
     }

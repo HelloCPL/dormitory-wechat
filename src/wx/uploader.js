@@ -41,6 +41,31 @@ export const wxUploadFile = (url, filePath, formData = {}) => {
   })
 }
 
+// 下载文件 参数1 地址 参数2 指定本地存储位置 参数3 header
+export const wxDownloadFile = (url, filePath, header) => {
+  return new Promise((resolve, reject) => {
+    wx.downloadFile({
+      url,
+      filePath,
+      header,
+      success: res => {
+        let msg = data.msg || '文件下载发生错误'
+        if (res.statusCode.toString().substr(0, 1) === '2') {
+          if (data.errorCode !== 0) toast(msg)
+          resolve(res.data)
+        } else {
+          toast(msg)
+          reject(res.data)
+        }
+      },
+      fail: () => {
+        toast('文件下载发生错误')
+        reject()
+      }
+    })
+  })
+}
+
 // 选择图片
 export const wxChooseImage = (params) => {
   params = params || {}

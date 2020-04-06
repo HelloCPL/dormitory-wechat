@@ -1,13 +1,13 @@
 <template>
   <div class="notification">
     <!-- 通知 -->
-    <van-notice-bar mode="closeable" :left-icon="noticeBarIcon" :text="noticeBarText" />
+    <van-notice-bar mode="closeable" :left-icon="noticeBarIcon" :text="noticeBarText" v-if="!isAuthGetter" />
     <!-- 我的消息和设置 -->
     <notice-and-setting />
     <!-- 登录 -->
     <login />
     <!-- 用户个人信息 -->
-    <div class="we-margin-top-10">
+    <div class="we-margin-top-10" v-if="!isAuthGetter">
       <user-info-mine />
     </div>
     <!-- 个人登记功能 -->
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
 import noticeAndSetting from '@com/mine/noticeAndSetting'
 import login from '@com/mine/login'
 import userInfoMine from '@com/mine/userInfoMine'
@@ -47,6 +47,11 @@ export default {
         { title: '离返校登记', url: '/pages/mine/leaveAndReturn/main' },
       ]
     }
+  },
+  computed: {
+    ...mapGetters([
+      'isAuthGetter'
+    ])
   },
   methods: {
     // 跳转到其他页面

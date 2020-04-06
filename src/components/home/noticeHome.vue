@@ -6,12 +6,12 @@
         <swiper vertical circular autoplay :interval="5000">
           <template v-for="(item, index) in noticeList">
             <swiper-item :item-id="index" :key="index">
-              <p class="we-line-1 we-color-text" @click="toNoticeDetail(item.id)">{{item.title}}</p>
+              <p class="we-line-1 we-color-text" @click="toDetail(item.id)">{{item.title}}</p>
             </swiper-item>
           </template>
         </swiper>
       </div>
-      <div class="we-padding-left-5 notice-more">
+      <div class="we-padding-left-5 notice-more" @click="toMore">
         <span class="we-color-blue">更多</span>
         <img :src="rightIcon">
       </div>
@@ -32,9 +32,16 @@ export default {
     }
   },
   methods: {
-    toNoticeDetail(id) {
+    // 跳转到详情
+    toDetail(id) {
       console.log(id)
-    }
+      this.$navigate.push('/pages/home/noticeDetail/main?id=' + id)
+    },
+
+    // 跳转更多
+    toMore() {
+      this.$navigate.push('/pages/home/noticeAll/main')
+    },
   }
 }
 </script>

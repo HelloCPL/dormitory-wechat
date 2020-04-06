@@ -27,26 +27,46 @@ export default {
       logs.unshift(Date.now())
       mpvue.setStorageSync('logs', logs)
     }
-
     this.initTokenAndUserInfo()
-
   },
   methods: {
     ...mapActions([
-      'initTokenAction',
-      'initUserInfoAction',
+      'setTokenAction',
+      'setUserInfoAction',
+      'setIsAuthAction'
     ]),
     // 将token和userInfo存在Vuex中
     initTokenAndUserInfo() {
       let token = this.wxGetStorage('token')
       let userInfo = this.wxGetStorage('userInfo')
       if (token)
-        this.initTokenAction(token)
+        this.setTokenAction(token)
       if (userInfo && this.$tools.isObject(userInfo)) {
-        this.initUserInfoAction(userInfo)
-        console.log('用户信息', userInfo)
+        this.setUserInfoAction(userInfo)
       }
-    }
+      this.verifyToken(userInfo)
+    },
+
+    // 检查token是否合法 不合法 userInfo存在 更新token
+    async verifyToken(userInfo) {
+      let res = this.$http.post('/token/verify')
+      if (res.errorCode === 0) {
+        let flag = !res.data && userInfo && userInfo.id && userInfo.openId && userInfo.dorRoomId
+        if (flag) {
+          // 请求token
+          let params = {
+            openId: userInfo.openId,
+            studentId: userInfo.id,
+            dorRoomId: userInfo.dorRoomId
+          }
+          let resToken = await this.$http.postPub('/token/generate', params)
+          if (resToken.errorCode === 0 && resToken.data) {
+            this.setTokenAction(resToken.data)
+            this.wxSetStorage('token', resToken.data)
+          }
+        }
+      }
+    },
   }
 
 }

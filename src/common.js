@@ -22,7 +22,8 @@ export default {
         // 全局调用vuex公共变量
         ...mapGetters([
           'userInfoGetter',
-          'tokenGetter'
+          'isLoginGetter',
+          'isAuthGetter'
         ])
       },
       // 命名使用大驼峰法
