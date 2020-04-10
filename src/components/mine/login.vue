@@ -3,7 +3,7 @@
     <div class="login-wrapper">
       <img :src="unLoginImg" v-if="!isLoginGetter">
       <img :src="loginImg" v-else-if="isLoginGetter && !userInfoGetter.avatarUrl">
-      <img :src="userInfoGetter.avatarUrl" v-else-if="isLoginGetter && userInfoGetter.avatarUrl" @click="test">
+      <img :src="userInfoGetter.avatarUrl" v-else-if="isLoginGetter && userInfoGetter.avatarUrl">
       <button open-type="getUserInfo" class="we-margin-top-10 we-tips login-btn" @getuserinfo="toLogin" v-if="!isLoginGetter">点击登录</button>
       <span class="we-color-tips we-margin-top-10" v-else>{{userInfoGetter.nickname}}</span>
     </div>
@@ -26,11 +26,6 @@ export default {
       'setUserInfoAction',
       'setTokenAction'
     ]),
-
-    async test() {
-      let res = await this.$http.get('/test')
-      console.log(res)
-    },
 
     // 点击登录
     async toLogin(e) {

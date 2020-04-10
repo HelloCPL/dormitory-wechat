@@ -1,5 +1,6 @@
 <script>
 import {
+  mapGetters,
   mapActions
 } from 'vuex'
 export default {
@@ -29,6 +30,11 @@ export default {
     }
     this.initTokenAndUserInfo()
   },
+  computed: {
+    ...mapGetters([
+      'tokenGetter'
+    ])
+  },
   methods: {
     ...mapActions([
       'setTokenAction',
@@ -49,6 +55,7 @@ export default {
 
     // 检查token是否合法 不合法 userInfo存在 更新token
     async verifyToken(userInfo) {
+      if (!this.tokenGetter) return
       let res = this.$http.post('/token/verify')
       if (res.errorCode === 0) {
         let flag = !res.data && userInfo && userInfo.id && userInfo.openId && userInfo.dorRoomId

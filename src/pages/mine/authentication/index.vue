@@ -5,9 +5,15 @@
       <p class="we-tips">请抓紧时间认证，否则给与真香警告！</p>
     </div>
 
-    <van-field label="学号" :value="studentNum" placeholder="请输入学号" input-align="right" @input="setStudentNum" />
-    <van-field label="真实姓名" :value="name" placeholder="请输入真实姓名" input-align="right" @input="setName" />
-    <van-field label="初始密码" type="password" :value="password" placeholder="请输入初始密码" input-align="right" @input="setPassword" />
+    <van-field :value="studentNum" placeholder="请输入学号" input-align="right" @input="setStudentNum">
+      <span slot="label" class="we-required">学号</span>
+    </van-field>
+    <van-field :value="name" placeholder="请输入真实姓名" input-align="right" @input="setName">
+      <span slot="label" class="we-required">真实姓名</span>
+    </van-field>
+    <van-field type="password" :value="password" placeholder="请输入初始密码" input-align="right" @input="setPassword">
+      <span slot="label" class="we-required">初始密码</span>
+    </van-field>
 
     <!-- 认证 -->
     <div class="we-margin-btn we-padding">

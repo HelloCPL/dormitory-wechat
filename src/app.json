@@ -2,13 +2,13 @@
   "pages": [
 
     "pages/index/main",
+    "pages/mine/belongings/main",
 
     "pages/home/noticeDetail/main",
     
 
     "pages/mine/leaveAndReturn/main",
     "pages/mine/school/main",
-    "pages/mine/belongings/main",
 
     "pages/mine/authentication/main",
     

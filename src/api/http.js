@@ -91,7 +91,6 @@ const http = {
 
     return new Promise((resolve, reject) => {
       showLoading()
-      console.log('请求前', params)
       wxRequest(params)
         .then(res => {
           resolve(res)

@@ -181,3 +181,21 @@ body {
 .we-flex-1 {
   flex: 1;
 }
+
+// 必填符号
+.we-required {
+  position: relative;
+}
+
+.we-required::before {
+  content: '*';
+  position: absolute;
+  left: -10px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+  color: #ed3f14;
+}
