@@ -3,7 +3,7 @@
     <swiper indicator-dots circular autoplay :interval="3500">
       <template v-for="(item, index) in swiperList">
         <swiper-item :key="index">
-          <img :src="item.img" class="swiper-img" />
+          <img :src="item.url" class="swiper-img" />
         </swiper-item>
       </template>
     </swiper>

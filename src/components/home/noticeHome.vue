@@ -11,7 +11,7 @@
           </template>
         </swiper>
       </div>
-      <div class="we-padding-left-5 notice-more" @click="toMore">
+      <div class="we-padding-left-5 notice-more" @click="toMore" v-if="noticeList.length > 2">
         <span class="we-color-blue">更多</span>
         <img :src="rightIcon">
       </div>
@@ -24,23 +24,29 @@ export default {
   data() {
     return {
       rightIcon: require('@icon/icon_right_blue.png'),
-      noticeList: [
-        { title: '关于进一步加强学生宿舍管理秩序的通知', id: 1 },
-        { title: '文明寝室评选结果公示', id: 2 },
-        { title: '关于2019年寒假学生宿舍安排的通知', id: 3 },
-      ]
+      noticeList: []
     }
   },
+  onLoad() {
+    this.getDataList()
+  },
   methods: {
+    // 获取数据
+    async getDataList() {
+      let res = await this.$http.post('/management/notices/list', { type: 1 })
+      if (res.errorCode === 0) {
+        this.noticeList = res.data
+      }
+    },
+    
     // 跳转到详情
     toDetail(id) {
-      console.log(id)
-      this.$navigate.push('/pages/home/noticeDetail/main?id=' + id)
+      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`)
     },
 
     // 跳转更多
     toMore() {
-      this.$navigate.push('/pages/home/noticeAll/main')
+      this.$navigate.push('/pages/home/noticeAll/main?type=' + 1)
     },
   }
 }

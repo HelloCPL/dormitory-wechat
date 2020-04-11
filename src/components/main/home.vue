@@ -68,14 +68,20 @@ export default {
     return {
       addIcon: require('@icon/icon_add_blue.png'),
       active: 0,
-      swiperList: [
-        { img: require('@img/banner.jpg') },
-        { img: require('@img/banner.jpg') },
-        { img: require('@img/banner.jpg') }
-      ]
+      swiperList: []
     }
   },
+  onLoad() {
+    this.getSwiperList()
+  },
   methods: {
+    // 获取轮播图
+    async getSwiperList() {
+      let res = await this.$http.post('/management/images/list', { type: 1 })
+      if (res.errorCode === 0) {
+        this.swiperList = res.data
+      }
+    },
     // 点击标签栏
     changeActive(e) {
       e = e.mp.detail.name

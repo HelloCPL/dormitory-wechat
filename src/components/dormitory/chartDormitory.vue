@@ -3,7 +3,7 @@
     <template v-for="(item, index) in dataList">
       <div class="we-padding-top-10 we-padding-right-10 chart-wrapper" :key="index">
         <div class="we-bg-white we-padding-5 we-shadow chart-box" @click="toInstitutionDetail(item.id)">
-          <img :src="chartImg" alt="">
+          <img :src="item.thumbnail || chartImg" alt="">
           <div class="chart-word">
             <span class="we-tips we-line-2">{{item.title}}</span>
           </div>
@@ -20,9 +20,7 @@ export default {
     dataList: {
       type: Array,
       default: function () {
-        return [
-          // { id: '', title: '宿舍结构图', content: ''}
-        ]
+        return []
       }
     }
   },

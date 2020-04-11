@@ -3,7 +3,7 @@
     <div class="login-wrapper">
       <img :src="unLoginImg" v-if="!isLoginGetter">
       <img :src="loginImg" v-else-if="isLoginGetter && !userInfoGetter.avatarUrl">
-      <img :src="userInfoGetter.avatarUrl" v-else-if="isLoginGetter && userInfoGetter.avatarUrl">
+      <img :src="userInfoGetter.avatarUrl" v-else-if="isLoginGetter && userInfoGetter.avatarUrl" @click="test">
       <button open-type="getUserInfo" class="we-margin-top-10 we-tips login-btn" @getuserinfo="toLogin" v-if="!isLoginGetter">点击登录</button>
       <span class="we-color-tips we-margin-top-10" v-else>{{userInfoGetter.nickname}}</span>
     </div>
@@ -69,6 +69,19 @@ export default {
         this.$toast(res.msg)
       }
       this.lock = false
+    },
+
+    // 仅测试用
+    async test() {
+      let params = {
+        pageNo: 1,
+        pageSize: 10,
+        type: 1,
+        id: 2
+      }
+      let url = '/management/notices/list'
+      let res = await this.$http.post(url, params)
+      console.log(res)
     }
   }
 }

@@ -4,9 +4,9 @@
     <div class="column-wrapper">
       <template v-for="(item, index) in columnList">
         <div class="column-box" :style="{'width': columnValue}" :key="index" @click="onPreviewImage(index)">
-          <img :src="item.img || bgImg" alt="">
+          <img :src="item.url" alt="" class="we-border-1">
           <div class="we-padding-10 we-font-center column-word">
-            <span class="we-color-white we-font-14 we-line-2">{{item.title}}</span>
+            <span class="we-color-orange we-font-14 we-line-2 we-font-bold">{{item.desc}}</span>
           </div>
         </div>
       </template>
@@ -25,15 +25,8 @@ export default {
   },
   data() {
     return {
-      bgImg: require('@img/banner.jpg'),
-      columnList: [
-        { img: '', title: '水电费价格表', content: '' },
-        { img: '', title: '宿舍报修价格表', content: '' },
-        { img: '', title: '宿舍内容结构图', content: '' },
-        { img: '', title: '学校平面图（本部）', content: '' },
-        { img: '', title: '学校平面图（白云校区）', content: '' },
-      ],
-      imgList: [require('@img/banner.jpg'), require('@img/banner.jpg'), require('@img/banner.jpg'), require('@img/banner.jpg'), require('@img/banner.jpg')], // 图片列表
+      columnList: [],
+      imgList: [], // 图片预览列表
     }
   },
   computed: {
@@ -43,7 +36,22 @@ export default {
       return num + '%'
     },
   },
+  onLoad() {
+    this.getColumnList()
+  },
   methods: {
+    // 获取宿舍信息图
+    async getColumnList() {
+      let res = await this.$http.post('/management/images/list', { type: 2 })
+      if (res.errorCode === 0) {
+        this.columnList = res.data
+        let arr = []
+        res.data.forEach(item => {
+          arr.push(item.url)
+        })
+        this.imgList = arr
+      }
+    },
     // 图片预览
     onPreviewImage(index) {
       wxPreviewImage(this.imgList, index)
@@ -55,5 +63,3 @@ export default {
 <style lang="scss" scoped>
 @import "./columnImg.scss";
 </style>
-
-

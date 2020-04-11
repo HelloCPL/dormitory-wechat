@@ -7,9 +7,12 @@
     line-height: 22px;
   }
 
+  .tips-box {
+    flex-wrap: wrap;
+  }
+
   .content,
   .content p {
     line-height: 20px;
-    text-indent: 2em;
   }
 }

@@ -41,7 +41,7 @@ export const wxUploadFile = (url, filePath, formData = {}) => {
   })
 }
 
-// 下载文件 参数1 地址 参数2 指定本地存储位置 参数3 header
+// 下载文件并保存 参数1 地址 参数2 指定本地存储位置 参数3 header
 export const wxDownloadFile = (url, filePath, header) => {
   return new Promise((resolve, reject) => {
     wx.downloadFile({
@@ -49,13 +49,32 @@ export const wxDownloadFile = (url, filePath, header) => {
       filePath,
       header,
       success: res => {
-        let msg = data.msg || '文件下载发生错误'
-        if (res.statusCode.toString().substr(0, 1) === '2') {
-          if (data.errorCode !== 0) toast(msg)
-          resolve(res.data)
+        if (res.tempFilePath) {
+          wx.saveFile({
+            tempFilePath: res.tempFilePath,
+            success: (resSave) => {
+              const savedFilePath = resSave.savedFilePath;
+              // 打开文件
+              wx.openDocument({
+                filePath: savedFilePath,
+                success: (resOpen) => {
+                  resolve({
+                    a: res,
+                    b: resSave,
+                    c: resOpen
+                  })
+                },
+                fail: (err) => {
+                  reject('打开文件失败')
+                }
+              });
+            },
+            fail: (err) => {
+              reject('保存文件失败')
+            }
+          });
         } else {
-          toast(msg)
-          reject(res.data)
+          reject('找不到文件')
         }
       },
       fail: () => {
