@@ -1,5 +1,6 @@
 <template>
   <div class="we-bg-white column-container" v-if="columnList.length">
+      <title-divider title="宿舍有关信息" />
     <!-- 图片栏目 -->
     <div class="column-wrapper">
       <template v-for="(item, index) in columnList">
@@ -16,7 +17,11 @@
 
 <script>
 import { wxPreviewImage } from '@/wx/index'
+import titleDivider from '@com/common/titleDivider'
 export default {
+  components: {
+    titleDivider,
+  },
   props: {
     column: { //一行栏目数量
       type: Number,

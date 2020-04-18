@@ -11,11 +11,6 @@
     
     "pages/mine/apply/main",
 
-
-    "pages/dormitory/recordsAdd/main",
-    "pages/dormitory/recordsList/main",
-    "pages/dormitory/recordsDetail/main",
-
     "pages/dormitory/membersList/main",
     "pages/dormitory/membersDetail/main",
 

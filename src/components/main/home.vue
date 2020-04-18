@@ -15,30 +15,7 @@
     <!-- 日常管理 -->
     <daily-home />
     <!-- 辅助功能 -->
-    <!-- <div class="we-margin-top-10">
-      <title-divider title="帮一帮">
-        <div class="home-add">
-          <span class="we-color-blue">我要发布</span>
-          <img :src="addIcon" class="we-margin-left-2" />
-        </div>
-      </title-divider>
-      <div class="order-wrapper">
-        <van-tabs :active="active" color="#ed3f14" swipeable animated @change="changeActive">
-          <van-tab title="帮拿快递" :name="0">
-            <order-mail :active="active" />
-          </van-tab>
-          <van-tab title="帮拿外卖" :name="1">
-            <order-food :active="active" />
-          </van-tab>
-          <van-tab title="其他" :name="2">
-            <order-other :active="active" />
-          </van-tab>
-          <van-tab title="我的" :name="3">
-            <order-mine :active="active" />
-          </van-tab>
-        </van-tabs>
-      </div>
-    </div> -->
+    
   </div>
 </template>
 
@@ -48,10 +25,6 @@ import weather from '@com/home/weather.vue'
 import noticeHome from '@com/home/noticeHome.vue'
 import dailyHome from '@com/home/dailyHome.vue'
 import titleDivider from '@com/common/titleDivider'
-// import orderMail from '@com/home/orderMail.vue'
-// import orderFood from '@com/home/orderFood.vue'
-// import orderOther from '@com/home/orderOther.vue'
-// import orderMine from '@com/home/orderMine.vue'
 export default {
   components: {
     swiperHome,
@@ -59,10 +32,6 @@ export default {
     noticeHome,
     dailyHome,
     titleDivider,
-    // orderMail,
-    // orderFood,
-    // orderOther,
-    // orderMine
   },
   data() {
     return {
@@ -86,7 +55,6 @@ export default {
     changeActive(e) {
       e = e.mp.detail.name
       this.active = e
-      console.log(e)
     }
   }
 }
