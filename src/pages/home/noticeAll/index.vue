@@ -62,7 +62,7 @@ export default {
         pageNo: this.pageNo,
         pageSize: this.pageSize
       }
-      let res = await this.$http.post('/management/notices/list', params)
+      let res = await this.$http.postPub('/management/notices/list', params)
       if (res.errorCode === 0) {
         this.dataList = this.dataList.concat(res.data)
         this.total = res.total
@@ -80,7 +80,10 @@ export default {
         let browseCount = this.dataList[index]['browseCount'] + 1
         this.$set(this.dataList[index], 'browseCount', browseCount)
       }, 500)
-      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`)
+      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`, {
+        isLogin: false,
+        isAuth: false
+      })
     },
   }
 }

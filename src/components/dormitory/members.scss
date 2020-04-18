@@ -25,6 +25,7 @@
 
   // 宿舍值日表
   .members-schedule {
+    
     display: flex;
     justify-content: flex-end;
 
@@ -40,7 +41,7 @@
     }
 
     .members-name {
-      max-width: 80px;
+      max-width: 120px;
       box-sizing: border-box;
     }
   }

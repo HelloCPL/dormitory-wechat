@@ -6,7 +6,7 @@
       <van-field :value="content" label="内容" input-align="right" type="textarea" placeholder="请输入日程内容" autosize @input="onInputContent" />
     </van-cell-group>
     <!-- 选择时间 -->
-    <van-cell title="选择时间" :value="startDate" is-link @click="showFlag = true" />
+    <van-cell title="提醒时间" :value="remindTime" is-link @click="showFlag = true" />
     <!-- 选择标签 -->
     <div v-if="tagList.length">
       <van-cell title="选择标签" :border="false" />
@@ -20,7 +20,7 @@
       </div>
       <!-- 自定义标签 -->
       <div class="we-bg-white we-padding-bottom-10 tag-padding">
-        <input type="text" placeholder="添加标签" maxlength="5" class="tag-input" @blur="addTag" />
+        <input type="text" placeholder="自定义标签" maxlength="5" class="tag-input" @blur="addTag" />
       </div>
     </div>
     <!-- 发布按钮 -->
@@ -41,8 +41,7 @@ export default {
     return {
       title: '',
       content: '',
-      startDate: '',
-      tag: '',
+      remindTime: '',
       showFlag: false,
       today: new Date().getTime(),
       tagList: ['日程', '活动', '聚会', '纪念日', '生日', '倒数日', '考试'],
@@ -53,7 +52,7 @@ export default {
   onLoad() {
     Object.assign(this.$data, this.$options.data())
   },
-  
+
   methods: {
     // 设置标题
     onInputTitle(e) {
@@ -70,11 +69,11 @@ export default {
     // 选择时间
     onConfirm(e) {
       e = e.mp.detail
-      this.startDate = this.$dayjs(e).format('YYYY-MM-DD hh:mm')
+      this.remindTime = this.$dayjs(e).format('YYYY-MM-DD hh:mm')
       this.showFlag = false
     },
 
-    // 关闭评论遮罩层
+    // 关闭遮罩层
     closeOverlay() {
       this.showFlag = false
     },
@@ -94,14 +93,32 @@ export default {
     },
 
     // 提交
-    onSubmit() {
+    async onSubmit() {
+      let msg = ''
+      if (!this.title) {
+        msg = '请输入日程标题'
+      } else if (!this.content) {
+        msg = '请输入日程内容'
+      } else if (!this.remindTime) {
+        msg = '请选择提醒时间'
+      }
+      if (msg) {
+        this.$toast(msg)
+        return
+      }
       let params = {
         title: this.title,
         content: this.content,
-        startDate: this.startDate,
-        tag: this.tagList[this.tagActived]
+        remindTime: this.$dayjs(this.remindTime).valueOf(),
+        label: this.tagList[this.tagActived]
       }
-      console.log(params)
+      let res = await this.$http.post('/dormitory/schedule/add', params)
+      if (res.errorCode === 0) {
+        this.$toast('提交成功')
+        setTimeout(() => {
+          this.$navigate.back()
+        }, 500)
+      }
     }
 
   }

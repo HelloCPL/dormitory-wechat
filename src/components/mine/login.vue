@@ -74,12 +74,9 @@ export default {
     // 仅测试用
     async test() {
       let params = {
-        pageNo: 1,
-        pageSize: 10,
-        type: 1,
-        id: 2
+        // id: 1
       }
-      let url = '/management/notices/list'
+      let url = '/dormitory/admin/detail'
       let res = await this.$http.post(url, params)
       console.log(res)
     }

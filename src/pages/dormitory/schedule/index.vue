@@ -19,15 +19,15 @@
         <p class="we-color-tips" v-if="currentDateInfo.gzYear && currentDateInfo.gzMonth && currentDateInfo.gzDay && currentDateInfo.Animal">{{currentDateInfo.gzYear}}{{currentDateInfo.Animal}}年
           {{currentDateInfo.gzMonth}}月 {{currentDateInfo.gzDay}}日</p>
       </div>
-      <div class="right">
+      <div class="right" v-if="dutyPeople">
         <span class="we-tips we-margin-top-5">值日：</span>
-        <span class="we-font-16 we-color-black we-line-1 name">梁婉鸣</span>
+        <span class="we-font-16 we-color-red we-line-1 name">{{dutyPeople}}</span>
       </div>
     </div>
 
     <!-- 宿舍值日表 -->
     <div class="we-margin-top-10">
-      <schedule-dormitory />
+      <schedule-dormitory :dutyInfo="dutyInfo" />
     </div>
 
     <!-- 自定义宿舍事件显示 -->
@@ -36,13 +36,19 @@
       <div class="we-padding-left-15 we-padding-right-15 we-padding-bottom-10 we-bg-white">
         <template v-for="(item, index) in dataList">
           <div class="schedule-event" :key="index">
-            <p>{{item.title}}</p>
+            <div class="we-flex-jc">
+              <p class="we-flex-1">
+                <van-tag type="primary" plain class="we-margin-right-10">{{item.label}}</van-tag>
+                <span>{{item.title}}</span>
+              </p>
+              <img :src="deleteIcon" v-if="item.isDelete == 1" alt="" class="delete-icon" @click="onDelete(item.id, index)" />
+            </div>
             <p class="we-margin-top-5 we-color-tips">{{item.content}}</p>
             <div class="we-margin-top-5 time">
-              <div class="we-margin-right-10" v-if="item.tag">
-                <van-tag type="primary" plain>{{item.tag}}</van-tag>
-              </div>
-              <span class="we-color-tips">{{item.startDate}}</span>
+              <span class="we-color-tips">发布人：{{item.releaseUserName}}</span>
+            </div>
+            <div class="we-margin-top-5 time">
+              <span class="we-color-tips">提醒时间：{{item.remindTimeStr}}</span>
             </div>
           </div>
         </template>
@@ -71,20 +77,16 @@ export default {
   },
   data() {
     return {
+      deleteIcon: require('@icon/icon_delete.png'),
       addIcon: require('@icon/icon_add_white.png'),
       weeks: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-      events: {
-        '2020-2-11': '嗨嗨',
-        '2020-2-13': '嗨嗨',
-      },
+      events: {},
       today: '', // 今天日期
       currentDate: '', // 当前选择日期
       currentDateInfo: {}, // 当前日期信息
-      dataList: [
-        { id: 1, dorId: 1, title: '事件标题', content: '我是内容', startDate: '2020-02-21 10:12' },
-        { id: 1, dorId: 1, title: '事件标题水电费得到的等幅度发', content: '我是内容啥快递费阿里附近奥拉佛手动冯老师地方', startDate: '2020-02-21 10:12', tag: '活动' },
-        { id: 1, dorId: 1, title: '事件标题水电费得到的等等等等多多多多多多多多多多多多多大幅度发', content: '我是内容啥快递费阿里附近奥拉夫乐山大佛实例地方是否的发送路径的福建省地方睡大觉方式拉德芳斯地方说了对方 手动乐山大佛手动冯老师地方', startDate: '2020-02-21 10:12', tag: '聚会' },
-      ]
+      dataList: [], // 自定义事件
+      dutyInfo: {}, // 值班信息
+      dutyPeople: '', // 今日值班人员
     }
   },
   computed: {
@@ -117,21 +119,82 @@ export default {
       return false
     }
   },
+  onLoad() {
+    Object.assign(this.$data, this.$options.data())
+    this.getDutyInfo()
+  },
+  onShow() {
+    this.getDutyInfo()
+    this.getMonthDataList(this.today)
+    this.getDayDataInfo(this.today)
+  },
   mounted() {
     this.initToday()
   },
   methods: {
+    // 获取宿舍值班信息
+    async getDutyInfo() {
+      let res = await this.$http.post('/dormitory/duty/check')
+      if (res.errorCode === 0) {
+        if (res.data) {
+          this.dutyInfo = res.data
+          let arr = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+          let day = new Date().getDay()
+          this.dutyPeople = res.data[arr[day]]
+        }
+      }
+    },
+
+    // 获取本月有数据的天数
+    async getMonthDataList(month) {
+      if (!month) return
+      this.events = {}
+      let res = await this.$http.post('/dormitory/schedule/month/list', { month })
+      if (res.errorCode === 0) {
+        let events = {}
+        if (this.$tools.isArray(res.data)) {
+          res.data.forEach(item => {
+            item = this.$dayjs(item).format('YYYY-M-D')
+            events[item] = 'a'
+          })
+        }
+        this.events = events
+        this.$forceUpdate()
+      }
+    },
+
+    // 获取某天自定义事件
+    async getDayDataInfo(day) {
+      if (!day) return
+      this.dataList = []
+      let res = await this.$http.post('/dormitory/schedule/check', { day })
+      if (res.errorCode === 0) {
+        this.dataList = res.data || []
+      }
+    },
+
+    async onDelete(id, index) {
+      let res = await this.$http.post('/dormitory/schedule/delete', { id })
+      if (res.errorCode === 0) {
+        this.dataList.splice(index, 1)
+        this.getMonthDataList(this.today)
+      }
+    },
+
     // 初始化日期
     initToday() {
       let today = this.$dayjs().format('YYYY-MM-DD')
       this.today = today
       this.currentDate = today
+      this.getMonthDataList(today)
+      this.getDayDataInfo(today)
       this.dateInfo(today)
     },
 
     // 返回今天
     setToday() {
       this.currentDate = this.today
+      this.getDayDataInfo(currentDate)
       this.dateInfo(this.currentDate)
       // 根据日期请求谁值日
       this.$refs.calendar.setToday()
@@ -142,29 +205,32 @@ export default {
       this.$navigate.push('/pages/dormitory/scheduleDormitoryAdd/main')
     },
 
-    // 获取某天信息 2020 1 5
+    // 获取某天 农历星程信息 设置值班人员信息
     dateInfo(dateValue) {
       dateValue = this.$dayjs(dateValue).format('YYYY-M-D')
       dateValue = dateValue.split('-')
       const info = this.$refs.calendar.dateInfo(dateValue[0], dateValue[1], dateValue[2])
       if (this.$tools.isObject(info))
         this.currentDateInfo = info
-      console.log(info)
+      let arr = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+      let day = this.$dayjs(dateValue).day()
+      this.dutyPeople = this.dutyInfo[arr[day]]
+      this.$forceUpdate()
     },
 
     // 选择上个月
     onPrev(year, month, weekIndex) {
-      console.log('选择上个月', year, month, weekIndex)
+      this.getMonthDataList(year + '-' + month)
     },
 
     // 选择了下个月
     onNext(year, month, weekIndex) {
-      console.log('选择了下个月', year, month, weekIndex)
+      this.getMonthDataList(year + '-' + month)
     },
 
     // 选择了月份
     onSelectMonth(month, year) {
-      console.log('选择了月份', month, year)
+      this.getMonthDataList(year + '-' + month)
     },
 
     // 选择了日期
@@ -172,8 +238,8 @@ export default {
       let currentDate = val1.join('-')
       currentDate = this.$dayjs(currentDate).format('YYYY-MM-DD')
       this.currentDate = currentDate
+      this.getDayDataInfo(currentDate)
       this.dateInfo(currentDate)
-      // 根据日期请求谁值日
     },
 
 

@@ -1,16 +1,15 @@
 <template>
-  <div class="we-bg-white we-margin-top-10 worker-container" v-if="workerList">
+  <div class="we-bg-white we-margin-top-10 worker-container" v-if="workerList && workerList.length">
     <title-divider title="宿舍管理员" />
     <!-- 管理员列表 -->
-
     <template v-for="(item, index) in workerList">
       <van-transition name="fade" :duration="600" :key="index" v-if="index < max || show">
         <div class="we-padding worker-wrapper" @click="toWorkerDetail(item.id)">
           <div class="left">
-            <van-image :src="item.avatarUrl || userImg" width="26" height="26" radius="2" lazy-load />
+            <van-image :src="item.headImg || userImg" width="26" height="26" radius="2" lazy-load />
           </div>
           <div class="right">
-            <p>{{item.workerName}}</p>
+            <p>{{item.name}}</p>
             <p class="we-color-tips we-margin-top-5 we-line-1">{{item.instroduce}}</p>
           </div>
         </div>
@@ -40,21 +39,28 @@ export default {
   },
   data() {
     return {
-      userImg: require('@icon/user.png'),
+      userImg: require('@icon/icon_user_login.png'),
       upImg: require('@icon/icon_up1_blue.png'),
       downImg: require('@icon/icon_down1_blue.png'),
-      workerList: [
-        { id: 1, avatarUrl: '', workerName: '张三', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务，为学生服务' },
-        { id: 1, avatarUrl: '', workerName: '李四', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务' },
-        { id: 1, avatarUrl: '', workerName: '王五', instroduce: '为人民服务，为学生服务' },
-        { id: 1, avatarUrl: '', workerName: '赵六', instroduce: '为人民服务' },
-        { id: 1, avatarUrl: '', workerName: '吴七', instroduce: '为人民服务，为学生服务。为人民服务，为学生服务。为人民服务' },
-      ],
+      workerList: [], // 宿管成员信息
       show: false,
       tipsWord: '展开'
     }
   },
+  onLoad() {
+    this.getMemberList()
+  },
   methods: {
+    // 获取宿管成员信息
+    async getMemberList() {
+      let res = await this.$http.post('/dormitory/admin/list')
+      if (res.errorCode === 0) {
+        if (res.data) {
+          this.workerList = res.data
+        }
+      }
+    },
+
     // 收齐展开切换
     toggle() {
       let flag = this.show
@@ -68,6 +74,14 @@ export default {
     toWorkerDetail(id) {
       this.$navigate.push(`/pages/dormitory/workerDetail/main?id=${id}`)
     },
+  },
+  watch: {
+    isLoginGetter(val, oldVal) {
+      if (val === oldVal) return
+      setTimeout(() => {
+        this.getMemberList()
+      }, 500)
+    }
   }
 }
 </script>

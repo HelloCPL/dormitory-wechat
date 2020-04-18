@@ -51,19 +51,19 @@ export default {
   methods: {
     // 获取数据
     async getDataList() {
-      let res1 = await this.$http.post('/management/notices/list', { type: 3, pageSize: 100 })
+      let res1 = await this.$http.postPub('/management/notices/list', { type: 3, pageSize: 100 })
       if (res1.errorCode === 0) {
         this.managementList = res1.data
       }
-      let res2 = await this.$http.post('/management/notices/list', { type: 4, pageSize: 100 })
+      let res2 = await this.$http.postPub('/management/notices/list', { type: 4, pageSize: 100 })
       if (res2.errorCode === 0) {
         this.guideList = res2.data
       }
-      let res3 = await this.$http.post('/management/notices/list', { type: 5, pageSize: 100 })
+      let res3 = await this.$http.postPub('/management/notices/list', { type: 5, pageSize: 100 })
       if (res3.errorCode === 0) {
         this.safeList = res3.data
       }
-      let res4 = await this.$http.post('/management/notices/list', { type: 6, pageSize: 100 })
+      let res4 = await this.$http.postPub('/management/notices/list', { type: 6, pageSize: 100 })
       if (res4.errorCode === 0) {
         this.apartmentList = res4.data
       }

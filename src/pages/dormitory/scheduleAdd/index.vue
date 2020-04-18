@@ -40,16 +40,18 @@ export default {
       weeks: { '0': '星期日', '1': '星期一', '2': '星期二', '3': '星期三', '4': '星期四', '5': '星期五', '6': '星期六' },
       peopleList: [''],
       currentDay: '0',
-      clearFlag: true
+      clearFlag: true,
+      dayType: '', // 时间类型 用于上传
     }
   },
   onLoad(query) {
     Object.assign(this.$data, this.$options.data())
     let day = query.day
     let value = query.value
+    this.dayType = query.dayType
     if (day)
       this.currentDay = day
-    if (value) {
+    if (value && value != 'null') {
       value = value.split('、')
       let arr = []
       for (let i = 0, len = value.length; i < len; i++) {
@@ -81,8 +83,22 @@ export default {
     },
 
     // 发布
-    onSubmit() {
-      console.log('发布了', this.peopleList)
+    async onSubmit() {
+      let arr = []
+      this.peopleList.forEach(item => {
+        if(item) arr.push(item)
+      })
+      let params = {
+        type: this.dayType,
+        data: arr.join('、')
+      }
+      let res = await this.$http.post('/dormitory/duty/edit', params)
+      if(res.errorCode === 0) {
+        this.$toast('提交成功')
+        setTimeout(() => {
+          this.$navigate.back()
+        }, 500)
+      }
     }
   }
 }

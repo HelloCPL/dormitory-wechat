@@ -42,7 +42,7 @@ export default {
   methods: {
     // 获取宿舍信息图
     async getColumnList() {
-      let res = await this.$http.post('/management/images/list', { type: 2 })
+      let res = await this.$http.postPub('/management/images/list', { type: 2 })
       if (res.errorCode === 0) {
         this.columnList = res.data
         let arr = []

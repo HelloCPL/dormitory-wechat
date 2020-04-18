@@ -1,12 +1,12 @@
 <template>
   <div class="we-bg-white members-container" v-if="membersList.length">
     <!-- 宿舍成员 -->
-    <van-cell title="北二666" is-link @click="toMembersList">
+    <van-cell :title="dormitoryName || '我的宿舍'" is-link @click="toMembersList">
       <!-- 头像 -->
       <div class="members-wrapper">
         <template v-for="(item, index) in membersList">
           <div :key="index" class="we-margin-right-2 members-img" v-if="index < maxValue">
-            <van-image :src="item.avartarImg || userImg" round width="26" height="26" />
+            <van-image :src="item.headImg || item.avatarUrl || userImg" round width="26" height="26" />
           </div>
         </template>
         <div class="we-tips members-more" v-if="membersList.length > 5">+{{membersList.length - maxValue}}</div>
@@ -14,12 +14,12 @@
     </van-cell>
     <!-- 宿舍值日表 -->
     <van-cell title="宿舍值日表" is-link @click="toSchedule">
-      <div class="members-schedule">
+      <div class="members-schedule" v-if="dutyPeople">
         <span class="we-tips members-time">
           <img :src="timeImg" class="we-margin-top-2" />
           <span>今天值日</span>
         </span>
-        <div class="we-padding-left-2 we-line-1 members-name">梁婉鸣</div>
+        <div class="we-padding-left-2 we-color-red we-line-1 members-name">{{dutyPeople}}</div>
       </div>
     </van-cell>
   </div>
@@ -35,18 +35,11 @@ export default {
   },
   data() {
     return {
-      userImg: require('@icon/user.png'),
+      userImg: require('@icon/icon_user_login.png'),
       timeImg: require('@icon/icon_time_blue.png'),
-      membersList: [
-        { avatarUrl: '', username: '梁婉鸣' },
-        { avatarUrl: '', username: '梁婉鸣' },
-        { avatarUrl: '', username: '梁婉鸣' },
-        { avatarUrl: '', username: '梁婉鸣' },
-        { avatarUrl: '', username: '梁婉鸣' },
-        { avatarUrl: '', username: '梁婉鸣' },
-        // {avatarUrl: '', username: '梁婉鸣' },
-        // {avatarUrl: '', username: '梁婉鸣' },
-      ],
+      dormitoryName: '', // 宿舍名称
+      membersList: [], // 宿舍成员信息
+      dutyPeople: '', // 值班人员
     }
   },
   computed: {
@@ -55,6 +48,10 @@ export default {
         return this.max - 1
       return this.max
     }
+  },
+  onLoad() {
+    this.getMemberList()
+    this.getDutyInfo()
   },
   methods: {
     // 跳转到宿舍成员列表
@@ -66,6 +63,40 @@ export default {
     toSchedule() {
       this.$navigate.push('/pages/dormitory/schedule/main')
 
+    },
+
+    // 获取宿舍成员信息
+    async getMemberList() {
+      let res = await this.$http.post('/dormitory/member/list')
+      if (res.errorCode === 0) {
+        if (res.data) {
+          if (res.data.dorBuildingName || res.data.dorRoomName)
+            this.dormitoryName = res.data.dorBuildingName + res.data.dorRoomName
+          if (res.data.members && res.data.members.length)
+            this.membersList = res.data.members
+        }
+      }
+    },
+
+    // 获取宿舍值班信息
+    async getDutyInfo() {
+      let res = await this.$http.post('/dormitory/duty/check')
+      if (res.errorCode === 0) {
+        if (res.data) {
+          let arr = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+          let day = new Date().getDay()
+          this.dutyPeople = res.data[arr[day]]
+        }
+      }
+    }
+  },
+  watch: {
+    isLoginGetter(val, oldVal) {
+      if (val === oldVal) return
+      setTimeout(() => {
+        this.getMemberList()
+        this.getDutyInfo()
+      }, 500)
     }
   }
 }

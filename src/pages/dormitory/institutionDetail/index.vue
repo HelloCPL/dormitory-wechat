@@ -39,7 +39,7 @@ export default {
   methods: {
     // 获取数据
     async getDataInfo(id) {
-      let res = await this.$http.post('/management/notices/detail', { id })
+      let res = await this.$http.postPub('/management/notices/detail', { id })
       if (res.errorCode === 0) {
         this.dataInfo = res.data
       }

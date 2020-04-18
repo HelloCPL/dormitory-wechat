@@ -34,7 +34,7 @@ export default {
   methods: {
     // 获取数据
     async getDataList() {
-      let res = await this.$http.post('/management/notices/list', { type: 2, pageSize: 3 })
+      let res = await this.$http.postPub('/management/notices/list', { type: 2, pageSize: 3 })
       if (res.errorCode === 0) {
         this.dailyList = res.data
       }
@@ -42,12 +42,18 @@ export default {
 
     // 跳转到详情
     toDetail(id) {
-      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`)
+      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`, {
+        isLogin: false,
+        isAuth: false
+      })
     },
 
     // 跳转更多
     toMore() {
-      this.$navigate.push('/pages/home/noticeAll/main?type=' + 2)
+      this.$navigate.push('/pages/home/noticeAll/main?type=' + 2, {
+        isLogin: false,
+        isAuth: false
+      })
     },
   }
 }

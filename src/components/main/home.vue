@@ -77,7 +77,7 @@ export default {
   methods: {
     // 获取轮播图
     async getSwiperList() {
-      let res = await this.$http.post('/management/images/list', { type: 1 })
+      let res = await this.$http.postPub('/management/images/list', { type: 1 })
       if (res.errorCode === 0) {
         this.swiperList = res.data
       }

@@ -34,7 +34,10 @@ export default {
   methods: {
     // 跳转到制度详情
     toInstitutionDetail(id) {
-      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`)
+      this.$navigate.push(`/pages/dormitory/institutionDetail/main?id=${id}`, {
+        isLogin: false,
+        isAuth: false
+      })
     }
   }
 }
