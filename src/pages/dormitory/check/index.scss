@@ -1,8 +1,13 @@
-.check-container {
+.assess-container {
   width: 100%;
   min-height: 100vh;
+  
+  .assess-scope {
+    display: flex;
+    align-items: center;
+  }
 
-  .check-content {
+  .assess-content {
     line-height: 18px;
   }
 }

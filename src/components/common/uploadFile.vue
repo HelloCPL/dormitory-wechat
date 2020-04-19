@@ -11,7 +11,7 @@
       <!-- 图片展示 -->
       <template v-for="(item, index) in value">
         <div class="we-margin-right-10 we-margin-bottom-10 upload-list" :key="index">
-          <van-image :src="item" width="80" height="80" radius="4" @click="onPreview(index)" />
+          <van-image :src="item.fullName" width="80" height="80" radius="4" @click="onPreview(index)" />
           <img :src="deleteIcon" alt="" class="we-padding-2 upload-delete" @click="onDelete(item, index)" v-if="isDelete">
         </div>
       </template>
@@ -76,7 +76,6 @@ export default {
       this.beforeChooseImage()
       let res = await wxChooseImage({ count: maxCount })
       this.afterChooseImage()
-      console.log('选择的图片', res)
       if (res && this.$tools.isArray(res.tempFilePaths) && !this.$tools.isEmptyArray(res.tempFilePaths)) {
         let tempFilePaths = res.tempFilePaths
         this.onUpload(tempFilePaths)
@@ -89,10 +88,10 @@ export default {
       if (this.$tools.isArray(filePaths)) {
         for (let i = 0, len = filePaths.length; i < len; i++) {
           let res = await wxUploadFile('/file/upload', filePaths[i])
-          console.log('上传图片返回', res)
           if (res.errorCode === 0) {
-            if (res.data && res.data.url)
-              imgList.push(res.data.url)
+            console.log(123, res)
+            if (res.data)
+              imgList.push(res.data)
           }
         }
         this.$emit('input', imgList)
@@ -105,9 +104,8 @@ export default {
     },
 
     // 删除图片
-    async onDelete(url, index) {
-      console.log(url)
-      let res = await this.$http.get('/file/delete', { url })
+    async onDelete(item, index) {
+      let res = await this.$http.get('/file/delete', { url: item.shortName })
       if (res.errorCode === 0) {
         let temList = this.$tools.deepCopy(this.value)
         temList.splice(index, 1)
@@ -117,14 +115,12 @@ export default {
 
     // 选择图片前
     beforeChooseImage() {
-      console.log(1)
       this.wxSetStorage('chooseImage', true)
     },
 
     // 选择照片后
     afterChooseImage() {
       if (this.wxGetStorage('chooseImage')) {
-        console.log(2)
         this.wxRemoveStorage('chooseImage')
       }
     }

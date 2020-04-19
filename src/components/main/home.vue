@@ -9,13 +9,16 @@
       </div>
     </div>
     <!-- 公告 -->
-    <div class="we-margin-bottom-10">
-      <notice-home />
-    </div>
+    <notice-home />
     <!-- 日常管理 -->
-    <daily-home />
+    <div class="we-margin-top-10">
+      <daily-home />
+    </div>
     <!-- 辅助功能 -->
-    
+    <div class="we-margin-top-10">
+      <excellent-dormitory></excellent-dormitory>
+    </div>
+
   </div>
 </template>
 
@@ -24,6 +27,7 @@ import swiperHome from '@com/home/swiperHome.vue'
 import weather from '@com/home/weather.vue'
 import noticeHome from '@com/home/noticeHome.vue'
 import dailyHome from '@com/home/dailyHome.vue'
+import excellentDormitory from '@com/home/excellentDormitory.vue'
 import titleDivider from '@com/common/titleDivider'
 export default {
   components: {
@@ -31,6 +35,7 @@ export default {
     weather,
     noticeHome,
     dailyHome,
+    excellentDormitory,
     titleDivider,
   },
   data() {

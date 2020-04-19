@@ -1,44 +1,37 @@
 <template>
   <div class="we-bg-white assess-container">
     <!-- 图表 -->
-    <div class="we-padding">
-      <p class="we-font-center we-font-12 we-font-bold assess-charts-title">{{dataInfo.address}}宿舍近五个月评价等级图表</p>
-      <div class="we-margin-top-5 assess-charts-box">
+    <div class="we-padding-top-15 we-padding-bottom-15" :class="{'header-box': !canvasObj}">
+      <p class="we-font-center we-font-12 we-font-bold assess-charts-title">{{dormitoryName}}宿舍近{{canvasObj &&
+        canvasObj.data.length}}个月评价等级图表</p>
+      <div class="we-margin-top-5 assess-charts-box" id="canvasBox">
         <canvas canvas-id="lineCanvas" disable-scroll="true"></canvas>
       </div>
     </div>
-    <div class="we-padding we-margin-top-10">
-      <p class="we-title we-font-center we-margin-bottom-10">西区666宿舍评优</p>
-      <div class="we-padding-top-10 we-padding-bottom-10 we-border-bottom-1 we-color-tips">
-        <p class="we-padding-bottom-5">时间：2020-01</p>
-        <div class="we-padding-bottom-2 assess-scope">
-          <span>等级：</span>
-          <van-rate :value="3" :count="3" disabled disabled-color="#ffd21e"  />
-          <span class="we-tips">（合格）</span>
+    <!-- 评优 -->
+    <div class="we-padding we-margin-top-10 we-border-top-1">
+      <p class="we-title we-margin-bottom-10">{{dormitoryName}}宿舍评优</p>
+      <template v-for="(item, index) in dataList">
+        <div class="we-padding-top-10 we-padding-bottom-10 we-border-bottom-1 we-color-tips" :key="index">
+          <p class="we-padding-bottom-5 we-color-text" v-if="item.title">{{item.title}}</p>
+          <div class="we-padding-bottom-2 assess-scope">
+            <span>评价等级：</span>
+            <van-rate :value="item.scope" :count="5" disabled disabled-color="#ffd21e" />
+            <span class="we-tips" v-if="item.scope == 1">（非常差）</span>
+            <span class="we-tips" v-if="item.scope == 2">（差）</span>
+            <span class="we-tips" v-if="item.scope == 3">（合格）</span>
+            <span class="we-tips" v-if="item.scope == 4">（良好）</span>
+            <span class="we-tips" v-if="item.scope == 5">（优秀）</span>
+          </div>
+          <p class="we-padding-bottom-5">检查时间：{{item.checkTimeStr}}</p>
+          <p class="we-padding-bottom-5" v-if="item.startTimeStr && item.endTimeStr">评选时间段：{{item.startTimeStr}}至{{item.endTimeStr}}</p>
+          <p class="we-padding-bottom-2 assess-content" v-if="item.releaseUserName">检查人：{{item.releaseUserName}}</p>
+          <p class="we-padding-bottom-2 assess-content" v-if="item.content">评价内容：{{item.content}}</p>
+          <p class="we-padding-bottom-2 we-color-red assess-content" v-if="item.remark">备注：{{item.remark}}</p>
         </div>
-        <p class="we-padding-bottom-2 assess-content">评价内容：好好好</p>
-      </div>
-
-      <div class="we-padding-top-10 we-padding-bottom-10 we-border-bottom-1 we-color-tips">
-        <p class="we-padding-bottom-5">时间：2020-01</p>
-        <div class="we-padding-bottom-2 assess-scope">
-          <span>等级：</span>
-          <van-rate :value="3" :count="3" disabled disabled-color="#ffd21e"  />
-          <span class="we-tips">（合格）</span>
-        </div>
-        <p class="we-padding-bottom-2 assess-content">评价内容：好好好</p>
-      </div>
-
-      <div class="we-padding-top-10 we-padding-bottom-10 we-border-bottom-1 we-color-tips">
-        <p class="we-padding-bottom-5">时间：2020-01</p>
-        <div class="we-padding-bottom-2 assess-scope">
-          <span>等级：</span>
-          <van-rate :value="4" :count="4" disabled disabled-color="#ffd21e"  />
-          <span class="we-tips">（良好）</span>
-        </div>
-        <p class="we-padding-bottom-2 assess-content">评价内容：好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好好</p>
-      </div>
+      </template>
     </div>
+
   </div>
 </template>
 
@@ -47,35 +40,84 @@ import wxCharts from '@/lib/wxcharts-min'
 export default {
   data() {
     return {
-      dataInfo: { // scope 1-5级
-        id: 1,
-        dorId: 1, 
-        address: '西区666',
-        data: [
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-          {scope: 3, content: '嗨嗨嗨', month: '2020-01'},
-        ]
-      }
+      canvasObj: null, // 图表数据 
+      dormitoryName: '', // 宿舍名称
+      dataList: [], // 评优数据列表
+      pageNo: 1,
+      pageSize: 10,
+      finish: false,
+      lock: false,
     }
+  },
+  onLoad(query) {
+    Object.assign(this.$data, this.$options.data())
   },
   mounted() {
-    let obj = {
-      label: ['2019-10', '2019-11', '2019-12', '2020-1', '2020-2'], // 横坐标类别
-      data: [3, 4, 2, 3, 5] // 数值 1-5
+    this.onRefresh()
+  },
+  // 上拉加载更多
+  onReachBottom() {
+    if (!this.finish) {
+      this.getDataList()
     }
-    this.setCanvas(obj)
   },
   methods: {
+    // 刷新
+    onRefresh() {
+      this.lock = false
+      this.finish = false
+      this.pageNo = 1
+      this.pageSize = 10
+      this.getDataList()
+    },
+
+    // 请求数据
+    async getDataList() {
+      if (this.lock || this.finish) return
+      if (this.pageNo === 1) this.dataList = []
+      this.lock = true
+      let params = {
+        type: 1,
+        pageNo: this.pageNo,
+        pageSize: this.pageSize
+      }
+      let res = await this.$http.post('/dormitory/evaluation/list', params)
+      if (res.errorCode === 0) {
+        this.dataList = this.dataList.concat(res.data)
+        this.pageNo += 1
+        if (!this.dormitoryName && this.dataList.length)
+          this.dormitoryName = this.dataList[0]['dorBuildingName'] + this.dataList[0]['dorRoomName']
+        if (this.dataList.length >= res.total)
+          this.finish = true
+        // 设置图表数据
+        if (!this.canvasObj && this.dataList.length > 2) {
+          let label = []
+          let data = []
+          this.dataList.forEach((item, index) => {
+            if (index < 5) {
+              label.push(item.checkTimeStr)
+              data.push(item.scope)
+            }
+          })
+          this.canvasObj = { data, label }
+          this.setCanvas(this.canvasObj)
+        }
+      }
+      this.lock = false
+    },
+
     // 设置图表
-    setCanvas(obj) {
+    async setCanvas(obj) {
+      if (!obj) return
+      let res = await this.GetElement('#canvasBox')
+      let width = 320
+      if(this.$tools.isArray(res) && res.length) {
+        width = parseInt(res[0]['width']) - 40
+      }
       new wxCharts({
         canvasId: 'lineCanvas',
         type: 'line',
-        width: 320,
+        width: width,
         height: 180,
         animation: false,
         categories: obj.label,

@@ -3,7 +3,7 @@
     <!-- 宿舍成员和值日表 -->
     <members />
     <!-- 功能 -->
-    <functional :column="4" />
+    <functional :column="3" />
     <!-- 宿舍管理员 -->
     <worker :max="2" />
 

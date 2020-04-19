@@ -35,10 +35,7 @@
             <span :class="{'active': item.active == activeChild}" :key="index" @click="setActiveChild(item.active)">{{item.name}}</span>
           </template>
         </div>
-        <suggestHistory1 :data-list="dataList" v-if="activeChild == 1" />
-        <suggestHistory2 :data-list="dataList" v-else-if="activeChild == 2" />
-        <suggestHistory3 :data-list="dataList" v-else-if="activeChild == 3" />
-        <suggestHistory4 :data-list="dataList" v-else-if="activeChild == 4" />
+        <suggest-history :data-list="dataList" :dormitoryName="dormitoryName" @delete="onDelete" />
       </van-tab>
     </van-tabs>
   </div>
@@ -50,11 +47,7 @@ import suggestHistory from '../components/suggestHistory'
 export default {
   components: {
     uploadFile,
-    'suggestHistory1': suggestHistory,
-    'suggestHistory2': suggestHistory,
-    'suggestHistory3': suggestHistory,
-    'suggestHistory4': suggestHistory,
-    'suggestHistory5': suggestHistory,
+    'suggestHistory': suggestHistory,
   },
   data() {
     return {
@@ -67,14 +60,14 @@ export default {
         { name: '已采纳', active: 3 },
         { name: '未采纳', active: 4 }
       ],
-      dataList: [ // state 0 处理中 1 已采纳 2 未采纳 type 1 投诉 2 建议
-        {id: 1, dorId: 1, uid: 1, state: 0, type: 1, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-        {id: 1, dorId: 1, uid: 1, state: 1, type: 1, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-        {id: 1, dorId: 1, uid: 1, state: 2, type: 1, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-         {id: 1, dorId: 1, uid: 1, state: 0, type: 2, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-        {id: 1, dorId: 1, uid: 1, state: 1, type: 2, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-        {id: 1, dorId: 1, uid: 1, state: 2, type: 2, content: '我是内容', imgList: [], createDate: '2020-01-01 12:22', address: '西区666', applyUser: '梁婉鸣', replyDate: '2020-02-02', replyContent: '回复内容', replyWorker: '陈小花', replyPhone: '15850505050'},
-      ],
+
+      dormitoryName: '', // 宿舍名称
+      status: 'all',
+      lock: false,
+      finish: false,
+      pageNo: 1,
+      pageSize: 10,
+      dataList: [], // 数据列表
 
       //投诉或建议
       type: 1, // 1 投诉 2 建议
@@ -82,17 +75,79 @@ export default {
       imgList: [], // 上传图片集合
     }
   },
+  onLoad() {
+    Object.assign(this.$data, this.$options.data())
+  },
+  // 上拉加载更多
+  onReachBottom() {
+    if (!this.finish) {
+      this.getDataList()
+    }
+  },
   methods: {
+    // 刷新
+    onRefresh() {
+      this.lock = false
+      this.finish = false
+      this.pageNo = 1
+      this.pageSize = 10
+      this.getDataList()
+    },
+
+    // 请求数据
+    async getDataList() {
+      if (this.lock || this.finish) return
+      if (this.pageNo === 1) this.dataList = []
+      this.lock = true
+      let params = {
+        status: this.status,
+        pageNo: this.pageNo,
+        pageSize: this.pageSize
+      }
+      let res = await this.$http.post('/dormitory/suggestion/list', params)
+      if (res.errorCode === 0) {
+        console.log(1111, res)
+        this.dataList = this.dataList.concat(res.data)
+        this.pageNo += 1
+        if (!this.dormitoryName && this.dataList.length)
+          this.dormitoryName = this.dataList[0]['dorBuildingName'] + this.dataList[0]['dorRoomName']
+        if (this.dataList.length >= res.total)
+          this.finish = true
+      }
+      this.lock = false
+    },
+
+    // 删除图片
+    onDelete(index) {
+      this.dataList.splice(index, 1)
+    },
+
     // 切换
     onChange(e) {
       e = e.mp.detail.name
       this.active = e
+      if (e == 1)
+        this.onRefresh()
     },
 
     // 切换子栏目
     setActiveChild(active) {
-      console.log(active)
       this.activeChild = active
+      switch (active) {
+        case 1:
+          this.status = 'all'
+          break
+        case 2:
+          this.status = 1
+          break
+        case 3:
+          this.status = 2
+          break
+        case 4:
+          this.status = 0
+          break
+      }
+      this.onRefresh()
     },
 
     // 设置type
@@ -104,6 +159,37 @@ export default {
     onInput(e) {
       e = e.mp.detail
       this.content = e
+    },
+
+    // 提交
+    async onSubmit() {
+      if (!this.content) {
+        let msg = this.type == 1 ? '请输入投诉内容' : '请输入建议内容'
+        this.$toast(msg)
+        return
+      }
+      // 处理图片短路经
+      let imgList
+      if (this.$tools.isArray(this.imgList) && this.imgList.length) {
+        imgList = []
+        this.imgList.forEach(item => {
+          imgList.push(item.shortName)
+        })
+      } else {
+        imgList = null
+      }
+      let params = {
+        type: this.type,
+        content: this.content,
+        imgList: imgList
+      }
+      let res = await this.$http.post('/dormitory/suggestion/add', params)
+      if (res.errorCode === 0) {
+        this.$toast('提交成功')
+        setTimeout(() => {
+          this.$navigate.back()
+        }, 1000)
+      }
     },
 
   }

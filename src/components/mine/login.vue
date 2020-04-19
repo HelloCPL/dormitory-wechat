@@ -74,9 +74,12 @@ export default {
     // 仅测试用
     async test() {
       let params = {
-        // id: 1
+        id: 2
+        // type: 1,
+        // content: '饮水机坏了',
+        // status: 1
       }
-      let url = '/dormitory/admin/detail'
+      let url = '/dormitory/suggestion/delete'
       let res = await this.$http.post(url, params)
       console.log(res)
     }

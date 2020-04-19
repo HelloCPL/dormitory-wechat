@@ -11,7 +11,7 @@ export const wxCreateSelectorQuery = (id) => {
     let query = wx.createSelectorQuery()
     query.select(id).boundingClientRect()
     query.exec(res => {
-      resolve(res[0])
+      resolve(res)
     })
   })
 }
