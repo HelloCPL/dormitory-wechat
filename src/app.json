@@ -1,45 +1,32 @@
 {
   "pages": [
-
     "pages/index/main",
-    "pages/mine/belongings/main",
-    
-    "pages/mine/leaveAndReturn/main",
-    "pages/mine/school/main",
 
-    "pages/mine/authentication/main",
-    
-    "pages/mine/apply/main",
+    "pages/home/noticeAll/main",
 
     "pages/dormitory/membersList/main",
     "pages/dormitory/membersDetail/main",
-
     "pages/dormitory/schedule/main",
     "pages/dormitory/scheduleAdd/main",
     "pages/dormitory/scheduleDormitoryAdd/main",
-
     "pages/dormitory/payment/main",
     "pages/dormitory/paymentDetail/main",
-
     "pages/dormitory/repair/main",
     "pages/dormitory/repairList/main",
     "pages/dormitory/repairEvaluate/main",
-
     "pages/dormitory/apply/main",
-    "pages/dormitory/applyDetail/main",
-
     "pages/dormitory/suggest/main",
-
     "pages/dormitory/assess/main",
-
     "pages/dormitory/punish/main",
-
     "pages/dormitory/check/main",
-
     "pages/dormitory/workerDetail/main",
+    "pages/dormitory/institutionDetail/main",
 
-    "pages/dormitory/institutionDetail/main"
-
+    "pages/mine/authentication/main",
+    "pages/mine/belongings/main",
+    "pages/mine/apply/main",
+    "pages/mine/leaveAndReturn/main",
+    "pages/mine/school/main"
 
   ],
   "usingComponents": {

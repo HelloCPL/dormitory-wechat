@@ -79,6 +79,10 @@
           </div>
         </div>
       </template>
+      <div class="we-padding we-font-center" v-if="!dataList.length">
+        <img :src="nodataIcon" alt="" style="width: 150px; height: 150px;">
+        <p class="we-tips">暂没有记录</p>
+      </div>
     </div>
 
   </div>
@@ -89,6 +93,7 @@ export default {
   data() {
     return {
       deleteIcon: require('@icon/icon_delete.png'),
+      nodataIcon: require('@icon/nodata.png'),
       typeList: ['来访人员', '出入品', '托管', '其他'],
       typeName: '',
       type: null,

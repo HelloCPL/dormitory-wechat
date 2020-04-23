@@ -106,7 +106,6 @@ export default {
       }
       let res = await this.$http.post('/dormitory/suggestion/list', params)
       if (res.errorCode === 0) {
-        console.log(1111, res)
         this.dataList = this.dataList.concat(res.data)
         this.pageNo += 1
         if (!this.dormitoryName && this.dataList.length)
@@ -117,7 +116,7 @@ export default {
       this.lock = false
     },
 
-    // 删除图片
+    // 删除
     onDelete(index) {
       this.dataList.splice(index, 1)
     },

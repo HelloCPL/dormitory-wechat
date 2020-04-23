@@ -3,10 +3,11 @@
     <!-- 账单详情 -->
     <div class="we-margin-15 we-padding-bottom-20 we-bg-white we-shadow payment-wrapper">
       <div class="we-padding title">
-        <span class="we-title">账单编号：{{dataInfo.orderId}}</span>
-        <span class="we-color-red we-font-12" v-if="dataInfo.state == 0">待支付</span>
-        <span class="we-color-green we-font-12" v-else-if="dataInfo.state == 1">已支付</span>
-        <span class="we-color-orange we-font-12" v-else-if="dataInfo.state == 2">已线下支付</span>
+        <span class="we-title">账单编号：{{dataInfo.id}}</span>
+        <span class="we-color-red we-font-12" v-if="dataInfo.status == 1">待支付</span>
+        <span class="we-color-green we-font-12" v-else-if="dataInfo.status == 2">已线上支付</span>
+        <span class="we-color-green we-font-12" v-else-if="dataInfo.status == 3">已线下支付</span>
+        <span class="we-color-tips we-font-12" v-else-if="dataInfo.status == 0">已取消</span>
       </div>
       <div class="we-padding main">
         <img :src="timeIcon" alt="" class="we-margin-top-20">
@@ -15,29 +16,35 @@
           <span class="price">{{dataInfo.price}}</span>
           <span class="we-font-12 we-padding-left-2">元</span>
         </p>
-        <p class="we-margin-top-10 we-margin-bottom-10 we-tips" v-if="dataInfo.state == 0">
+        <p class="we-margin-top-10 we-margin-bottom-10 we-tips" v-if="dataInfo.status == 1">
           <span>请在</span>
-          <span>{{dataInfo.endDate}}</span>
+          <span>{{dataInfo.endTimeStr}}</span>
           <span>前完成支付</span>
+        </p>
+        <p class="we-margin-top-10 we-margin-bottom-10 we-tips" v-if="(dataInfo.status == 2 || dataInfo.status == 3) && dataInfo.payTimeStr && dataInfo.releaseUserName">
+          <span>{{dataInfo.releaseUserName}}已在</span>
+          <span>{{dataInfo.payTimeStr}}</span>
+          <span>完成支付</span>
         </p>
       </div>
       <div class="we-padding">
         <p class="we-title we-margin-bottom-10">账单说明</p>
-        <p class="we-color-tips we-margin-bottom-5">类型：{{dataInfo.title}}</p>
-        <p class="we-color-tips we-margin-bottom-5">收款方：{{dataInfo.business}}</p>
-        <p class="we-color-tips we-margin-bottom-5">创建时间：{{dataInfo.startDate}}</p>
-        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.state == 0">过期时间：{{dataInfo.endDate}}</p>
-        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.state != 0">付款人：{{dataInfo.payUser}}</p>
-        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.state != 0">付款时间：{{dataInfo.payDate}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.title">类型：{{dataInfo.title}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.content">具体内容：{{dataInfo.title}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.accountName">收款方：{{dataInfo.accountName}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.createTimeStr">创建时间：{{dataInfo.createTimeStr}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.status == 1">缴费截止时间：{{dataInfo.endTimeStr}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.status != 1 && dataInfo.payUserName">付款人：{{dataInfo.payUserName}}</p>
+        <p class="we-color-tips we-margin-bottom-5" v-if="dataInfo.status != 1 && dataInfo.payTimeStr">付款时间：{{dataInfo.payTimeStr}}</p>
       </div>
     </div>
     <!-- 申请退款 -->
-    <!-- <div class="refund" v-if="dataInfo.state == 1">
+    <div class="refund" v-if="dataInfo.status == 2">
       <img :src="refundIcon" alt="" class="we-margin-right-2" @click="onRefund">
-      <span class="we-color-tips tips" @click="onRefund">申请退款</span>
-    </div> -->
+      <span class="we-color-tips tips" @click="onRefund">申请退款说明</span>
+    </div>
     <!-- 立即支付 -->
-    <div class="we-margin-15 we-padding" v-if="dataInfo.state == 0">
+    <div class="we-margin-15 we-padding" v-if="dataInfo.status == 1">
       <van-button type="info" size="large" round @click="onPayment">立即支付</van-button>
     </div>
   </div>
@@ -47,34 +54,49 @@
 export default {
   data() {
     return {
+      id: '',
       timeIcon: require('@icon/icon_time_blue.png'),
       refundIcon: require('@icon/icon_rmb.png'),
-      dataInfo: { // state 0 待支付 1 已支付 2 已线下支付
-        id: 1,
-        dorid: 1,
-        uid: null,
-        payUser: '梁婉鸣',
-        state: 0,
-        price: '12.00',
-        title: '水费、电费',
-        business: '广东技术师范学院',
-        startDate: '2020-02-02 12:00',
-        endDate: '2020-02-23 12:00',
-        payDate: '2020-02-22 12:00:00',
-        payway: null,
-        orderId: '202002021200120101'
-      },
+      dataInfo: {}, // 账单数据
     }
   },
+  onLoad(query) {
+    Object.assign(this.$data, this.$options.data())
+    this.id = query.id
+    this.getDataList(query.id)
+  },
   methods: {
+    // 请求数据
+    async getDataList(id) {
+      if (!id) return
+      let res = await this.$http.post('/dormitory/payment/detail', { id })
+      if (res.errorCode === 0) {
+        this.dataInfo = res.data
+      }
+    },
+
     // 申请退款
     onRefund() {
-
+      let str = '如需申请退款必须找管理员申请'
+      this.$alert(str)
     },
 
     // 立即支付
-    onPayment() {
-
+    async onPayment() {
+      let params = {
+        id: this.id,
+        keyCode: 1
+      }
+      let res = await this.$http.post('/dormitory/payment/pay', params)
+      if (res.errorCode === 0) {
+        this.$alert({
+          title: '支付完成',
+          content: '暂时模拟支付，后期完善'
+        })
+          .then(() => {
+            this.$navigate.back()
+          })
+      }
     },
   }
 }

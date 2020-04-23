@@ -24,3 +24,18 @@ export const wxOnWindowResize = () => {
     })
   })
 }
+
+// 拨打电话
+export const wxMakePhoneCall = (phone) => {
+  return new Promise((resolve, reject) => {
+    wx.makePhoneCall({
+      phoneNumber: phone,
+      success: () => {
+        resolve()
+      },
+      fail: () => {
+        reject()
+      }
+    })
+  })
+}

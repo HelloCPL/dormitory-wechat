@@ -51,6 +51,9 @@ export default {
       return this.active
     }
   },
+  onShow() {
+    console.log('home111')
+  },
   methods: {
     // 点击底部栏
     onChange(e) {

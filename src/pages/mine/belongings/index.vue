@@ -53,6 +53,10 @@
           </div>
         </div>
       </template>
+      <div class="we-padding we-font-center" v-if="!dataList.length">
+        <img :src="nodataIcon" alt="" style="width: 150px; height: 150px;">
+        <p class="we-tips">暂没有记录</p>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +68,7 @@ export default {
       addIcon: require('@icon/icon_add_blue.png'),
       closeIcon: require('@icon/icon_close1.png'),
       deleteIcon: require('@icon/icon_delete.png'),
+      nodataIcon: require('@icon/nodata.png'),
       goodsList: [''],
       total: 0,
       dataList: [],

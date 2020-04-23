@@ -5,9 +5,10 @@
       <div class="we-padding-bottom-10 evaluate-header">
         <div class="we-color-white we-font-20 we-margin-right-10 left">修</div>
         <div class="we-color-tips right">
-          <p>维修人员：大叔一号</p>
-          <p>维修时间：2020-01-01</p>
-          <p>维修内容：圣诞节楼上的圣诞节廊坊市</p>
+          <p v-if="dataInfo.repairWorker">维修人员：{{dataInfo.repairWorker}}</p>
+          <p v-if="dataInfo.repairTimeStr">维修时间：{{dataInfo.repairTimeStr}}</p>
+          <p v-if="dataInfo.content">维修内容：{{dataInfo.content}}</p>
+          <p v-if="dataInfo.createTimeStr">申报时间：{{dataInfo.createTimeStr}}</p>
         </div>
       </div>
       <!-- 评分 -->
@@ -39,8 +40,14 @@ export default {
   data() {
     return {
       scope: 0,
-      content: ''
+      content: '',
+      dataInfo: {}
     }
+  },
+  onLoad(query) {
+    Object.assign(this.$data, this.$options.data())
+    console.log(query)
+    this.dataInfo = query
   },
   methods: {
     // 评分
@@ -56,8 +63,36 @@ export default {
     },
 
     // 提交
-    onSubmit() {
-      console.log(this.scope, this.content)
+    async onSubmit() {
+      if (!this.scope) {
+        this.$toast('请先打分')
+        return
+      } else if (!this.content) {
+        this.$toast('请输入评价内容')
+        return
+      } else if (!this.dataInfo.id) {
+        this.$toast('发生错误')
+        return
+      }
+      let params = {
+        keyId: this.dataInfo.id,
+        type: 1,
+        scope: this.scope,
+        content: this.content
+      }
+      let res = await this.$http.post('/common/evaluation/add', params)
+      if (res.errorCode === 0) {
+        let res2 = await this.$http.post('/dormitory/repair/evaluate', {
+          id: parseInt(this.dataInfo.id),
+          evaluationId: res.data.id
+        })
+        if (res2.errorCode === 0) {
+          this.$toast('评价成功')
+          setTimeout(() => {
+            this.$navigate.back()
+          }, 1000)
+        }
+      }
     }
   }
 }

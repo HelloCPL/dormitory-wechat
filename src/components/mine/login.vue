@@ -74,12 +74,16 @@ export default {
     // 仅测试用
     async test() {
       let params = {
-        id: 2
-        // type: 1,
-        // content: '饮水机坏了',
-        // status: 1
+        id: 1,
+        keyCode: 1,
+        keyId: 12,
+        type: 2,
+        scope: 3,
+        status: '0,1,2,3',
+        content: '灯泡更换',
+        imgList: ['kf4bv1587268410770.jpg']
       }
-      let url = '/dormitory/suggestion/delete'
+      let url = '/dormitory/payment/pay'
       let res = await this.$http.post(url, params)
       console.log(res)
     }

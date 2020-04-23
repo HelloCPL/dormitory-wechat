@@ -9,11 +9,11 @@
           <div class="we-padding-bottom-2 assess-scope">
             <span>评价等级：</span>
             <van-rate :value="item.scope" :count="5" disabled disabled-color="#ffd21e" />
-            <span class="we-tips" v-if="item.scope == 1">（非常差）</span>
-            <span class="we-tips" v-if="item.scope == 2">（差）</span>
-            <span class="we-tips" v-if="item.scope == 3">（合格）</span>
-            <span class="we-tips" v-if="item.scope == 4">（良好）</span>
-            <span class="we-tips" v-if="item.scope == 5">（优秀）</span>
+            <span class="we-tips evaluation-word" v-if="item.scope == 1">（非常差）</span>
+            <span class="we-tips evaluation-word" v-if="item.scope == 2">（差）</span>
+            <span class="we-tips evaluation-word" v-if="item.scope == 3">（合格）</span>
+            <span class="we-tips evaluation-word" v-if="item.scope == 4">（良好）</span>
+            <span class="we-tips evaluation-word" v-if="item.scope == 5">（优秀）</span>
           </div> 
           <p class="we-padding-bottom-5">违纪时间：{{item.checkTimeStr}}</p>
           <p class="we-padding-bottom-5" v-if="item.startTimeStr && item.endTimeStr">检查阶段：{{item.startTimeStr}}至{{item.endTimeStr}}</p>
@@ -22,6 +22,10 @@
           <p class="we-padding-bottom-2 we-color-red assess-content" v-if="item.remark">备注：{{item.remark}}</p>
         </div>
       </template>
+       <div class="we-padding we-font-center" v-if="!dataList.length">
+        <img :src="nodataIcon" alt="" style="width: 150px; height: 150px;">
+        <p class="we-tips">暂没有记录</p>
+      </div>
     </div>
 
   </div>
@@ -31,6 +35,7 @@
 export default {
   data() {
     return {
+      nodataIcon: require('@icon/nodata.png'),
       dormitoryName: '', // 宿舍名称
       dataList: [], // 评优数据列表
       pageNo: 1,

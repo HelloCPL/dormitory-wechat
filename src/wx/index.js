@@ -41,7 +41,8 @@ import {
 import {
   wxSetNavigationBarTitle,
   wxCreateSelectorQuery,
-  wxOnWindowResize
+  wxOnWindowResize,
+  wxMakePhoneCall
 } from './other'
 // 统一导出
 export {
@@ -66,5 +67,6 @@ export {
   wxPreviewImage,
   wxSetNavigationBarTitle,
   wxCreateSelectorQuery,
-  wxOnWindowResize
+  wxOnWindowResize,
+  wxMakePhoneCall
 }

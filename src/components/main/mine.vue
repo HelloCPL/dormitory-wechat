@@ -56,7 +56,10 @@ export default {
   methods: {
     // 跳转到其他页面
     toNextPage(url) {
-      this.$navigate.push(url)
+      this.$navigate.push(url, {
+        isLogin: false,
+        isAuth: false
+      })
     }
   }
 }
