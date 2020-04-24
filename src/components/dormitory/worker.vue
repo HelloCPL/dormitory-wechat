@@ -76,11 +76,11 @@ export default {
     },
   },
   watch: {
-    isLoginGetter(val, oldVal) {
+    isAuthGetter(val, oldVal) {
       if (val === oldVal) return
       setTimeout(() => {
         this.getMemberList()
-      }, 500)
+      }, 1000)
     }
   }
 }

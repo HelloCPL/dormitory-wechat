@@ -14,10 +14,22 @@
     </div>
 
     <!-- 底部标签栏 -->
-    <van-tabbar :active="active" @change="onChange" z-index="9" active-color="#19be6b" inactive-color="#b2b2b2">
-      <van-tabbar-item :name="0" icon="wap-home">首页</van-tabbar-item>
-      <van-tabbar-item :name="1" icon="apps-o">宿舍</van-tabbar-item>
-      <van-tabbar-item :name="2" icon="contact" info="5">我的</van-tabbar-item>
+    <van-tabbar :active="active" @change="onChange" z-index="9" active-color="#04C161" inactive-color="#b2b2b2">
+      <van-tabbar-item :name="0">
+        <img slot="icon" :src="homeUnselectIcon" style="width: 18px; height: 18px;" />
+        <img slot="icon-active" :src="homeIcon" style="width: 18px; height: 18px;" />
+        首页
+      </van-tabbar-item>
+      <van-tabbar-item :name="1">
+        <img slot="icon" :src="functionUnselectIcon" style="width: 18px; height: 18px;" />
+        <img slot="icon-active" :src="functionIcon" style="width: 18px; height: 18px;" />
+        宿舍
+      </van-tabbar-item>
+      <van-tabbar-item :name="2" :dot="!isAuthGetter">
+        <img slot="icon" :src="mineUnselectIcon" style="width: 18px; height: 18px;" />
+        <img slot="icon-active" :src="mineIcon" style="width: 18px; height: 18px;" />
+        我的
+      </van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -35,7 +47,13 @@ export default {
   },
   data() {
     return {
-      active: 1
+      homeIcon: require('@icon/icon_home.png'),
+      homeUnselectIcon: require('@icon/icon_home_unselect.png'),
+      functionIcon: require('@icon/icon_function.png'),
+      functionUnselectIcon: require('@icon/icon_function_unselect.png'),
+      mineIcon: require('@icon/icon_mine.png'),
+      mineUnselectIcon: require('@icon/icon_mine_unselect.png'),
+      active: 0,
     }
   },
   computed: {
@@ -59,7 +77,7 @@ export default {
     onChange(e) {
       this.active = e.mp.detail
     }
-  },
+  }
 }
 
 </script>
