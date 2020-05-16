@@ -69,7 +69,8 @@ export default {
         { name: '全部', active: 1 },
         { name: '审核中', active: 2 },
         { name: '已通过', active: 3 },
-        { name: '已拒绝', active: 4 },
+        { name: '已处理', active: 4 },
+        { name: '已拒绝', active: 5 },
       ],
       // 申请页面数据
       typeList: ['物品类', '工具类', '大功率电器', '活动类', '其他'], //后期可从数据库获取
@@ -162,6 +163,9 @@ export default {
           this.status = 2
           break
         case 4:
+          this.status = 3
+          break
+        case 5:
           this.status = 0
           break
       }

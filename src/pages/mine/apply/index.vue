@@ -56,6 +56,7 @@
             <div class="we-flex">
               <span class="we-font-12 we-color-green we-padding-right-10 we-nowrap" v-if="item.replyStatus == 1">审核中</span>
               <span class="we-font-12 we-color-green we-padding-right-10 we-nowrap" v-else-if="item.replyStatus == 2">审核成功</span>
+              <span class="we-font-12 we-color-green we-padding-right-10 we-nowrap" v-else-if="item.replyStatus == 3">已处理</span>
               <span class="we-font-12 we-color-red we-padding-right-10 we-nowrap" v-else-if="item.replyStatus == 0">审核失败</span>
               <img :src="deleteIcon" alt="" class="delete-icon" v-if="item.replyStatus == 1" @click="onDelete(item.id, index)" />
             </div>

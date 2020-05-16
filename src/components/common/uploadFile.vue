@@ -89,7 +89,6 @@ export default {
         for (let i = 0, len = filePaths.length; i < len; i++) {
           let res = await wxUploadFile('/file/upload', filePaths[i])
           if (res.errorCode === 0) {
-            console.log(123, res)
             if (res.data)
               imgList.push(res.data)
           }

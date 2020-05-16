@@ -15,9 +15,9 @@
     <div v-if="dataInfo.fileUrl && dataInfo.fileUrl.length" class="we-margin-top-20 we-border-top-1">
       <p class="we-padding">附件({{dataInfo.fileUrl.length}})</p>
       <template v-for="(item, index) in dataInfo.fileUrl">
-        <div class="we-padding" :key="index" @click="downloadFile(item.filePath)">
-          <p class="we-color-blue">{{item.fileName}}</p>
-          <p class="we-tips we-margin-top-2">{{item.fileSize}}</p>
+        <div class="we-padding" :key="index" @click="downloadFile(item.fullName)">
+          <p class="we-color-blue">{{item.shortName}}</p>
+          <p class="we-tips we-margin-top-2">{{item.fileSizeWord}}</p>
         </div>
       </template>
     </div>

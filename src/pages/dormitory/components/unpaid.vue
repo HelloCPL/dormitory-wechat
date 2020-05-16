@@ -5,7 +5,7 @@
       <p class="we-tips">未缴金额</p>
       <div class="we-margin-top-5 we-color-black">
         <span class="we-font-12 we-padding-right-2">￥</span>
-        <span class="price">{{money}}</span>
+        <span class="price">{{money || 0}}</span>
         <span class="we-font-12 we-padding-left-2">元</span>
       </div>
       <p class="we-tips help" @click="onHelper">帮助中心</p>
@@ -52,7 +52,7 @@
           </div>
         </div>
       </template>
-      <div class="we-padding we-font-center" v-if="!dataList.length">
+      <div class="we-bg-white we-padding we-font-center" v-if="!dataList.length">
         <img :src="nodataIcon" alt="" style="width: 150px; height: 150px;">
         <p class="we-tips">暂没有记录</p>
       </div>

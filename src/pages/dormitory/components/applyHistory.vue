@@ -7,6 +7,10 @@
           <img :src="successIcon" alt="" class="we-margin-right-2">
           <span class="we-color-green we-font-16">审核成功，请等待工作人员联系！</span>
         </div>
+        <div class="we-margin-bottom-10 apply-success" v-if="item.status == 3">
+          <img :src="successIcon" alt="" class="we-margin-right-2">
+          <span class="we-color-green we-font-16">已处理！</span>
+        </div>
         <div class="we-margin-bottom-10 apply-success" v-else-if="item.status == 0">
           <img :src="failIcon" alt="" class="we-margin-right-2">
           <span class="we-color-red we-font-16">审核失败！</span>
