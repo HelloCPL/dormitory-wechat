@@ -3,7 +3,9 @@
     <template v-for="(item, index) in membersList">
       <div class="we-padding-left-15 we-padding-right-15 members-wrapper" :index="index" @click="toMembersDetail(item.id)">
         <div class="we-padding-right-10">
-          <van-image :src="item.headImg || item.avatarUrl || userIcon" width="30" height="30" :radius="4" />
+          <van-image :src="item.headImg.fullName" width="30" height="30" :radius="4" v-if="item.headImg && item.headImg.fullName"/>
+          <van-image :src="item.avatarUrl" width="30" height="30" :radius="4" v-else-if="item.avatarUrl"/>
+          <van-image :src="userIcon" width="30" height="30" :radius="4" v-else />
         </div>
         <p class="right we-line-1"> {{item.name}}</p>
       </div>

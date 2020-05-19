@@ -6,7 +6,8 @@
       <van-transition name="fade" :duration="600" :key="index" v-if="index < max || show">
         <div class="we-padding worker-wrapper" @click="toWorkerDetail(item.id)">
           <div class="left">
-            <van-image :src="item.headImg || userImg" width="26" height="26" radius="2" lazy-load />
+            <van-image :src="item.headImg.fullName" width="26" height="26" radius="2" lazy-load v-if="item.headImg && item.headImg.fullName" />
+            <van-image :src="userImg" width="26" height="26" radius="2" lazy-load v-else />
           </div>
           <div class="right">
             <p>{{item.name}}</p>

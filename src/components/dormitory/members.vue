@@ -6,7 +6,9 @@
       <div class="members-wrapper">
         <template v-for="(item, index) in membersList">
           <div :key="index" class="we-margin-right-2 members-img" v-if="index < maxValue">
-            <van-image :src="item.headImg || item.avatarUrl || userImg" round width="26" height="26" />
+            <van-image :src="item.headImg.fullName" round width="26" height="26" v-if="item.headImg && item.headImg.fullName" />
+            <van-image :src="item.avatarUrl" round width="26" height="26" v-else-if="item.avatarUrl" />
+            <van-image :src="userImg" round width="26" height="26" v-else />
           </div>
         </template>
         <div class="we-tips members-more" v-if="membersList.length > 5">+{{membersList.length - maxValue}}</div>

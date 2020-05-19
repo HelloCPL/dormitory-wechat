@@ -3,7 +3,9 @@
     <!-- 头部主要信息 -->
     <div class="we-bg-white we-padding worker-header">
       <div class="we-padding-right-10">
-        <van-image :src="dataInfo.headImg || userIcon" width="30" height="30" radius="4" @click="onPreviewImage(dataInfo.headImg)" />
+        <van-image :src="dataInfo.headImg.fullName" width="30" height="30" radius="4" @click="onPreviewImage(dataInfo.headImg.fullName)"
+          v-if="dataInfo.headImg && dataInfo.headImg.fullName" />
+        <van-image :src="userIcon" width="30" height="30" radius="4" v-else />
       </div>
       <div class="we-color-tips right">
         <div class="we-margin-bottom-5 name">
