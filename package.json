@@ -25,7 +25,7 @@
   "dependencies": {
     "dayjs": "^1.8.19",
     "js-base64": "^2.5.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mpvue": "^2.0.0",
     "mpvue-calendar": "^2.3.2",
     "node-sass": "^4.13.0",
